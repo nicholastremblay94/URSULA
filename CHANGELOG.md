@@ -4,6 +4,25 @@
 
 ---
 
+## Project Milestone — GitHub Repository Established
+
+*May 24, 2026*
+
+URSULA is now version controlled and publicly hosted on GitHub at
+github.com/nicholastremblay94/URSULA. This marks the formal start
+of the commit-based workflow. All future builds will follow the
+Build → Test → Confirm → Commit → Push cycle.
+
+Pre-v23 history is documented in this changelog. From v23 onwards,
+each commit will correspond to a confirmed stable build.
+
+**Repository structure established:**
+- `prototype/` — current single-file HTML dashboard
+- `docs/` — handoff, data dictionary, roadmap, migration scoping,
+  known bugs & limitations
+- `CHANGELOG.md` and `README.md` at root level
+- `.gitignore` configured to exclude Mac system files
+
 ## v22 — Re-reads, Search Clear
 
 Added re-reads section to Edit Entry modal and Collection detail panel. Search bar now clears and dropdown closes when clicking any result.
