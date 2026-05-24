@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reading log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<style>
+:root {
+  --bg: #1a1917; --bg2: #242320; --bg3: #2e2c29; --bg4: #363430;
+  --border: #3a3835; --border2: #4a4845;
+  --text: #e8e6e1; --muted: #888780; --hint: #555451;
+  --accent: #ff6124;
+  --novel: #378ADD; --novel-bg: #0C447C; --novel-text: #B5D4F4;
+  --poem: #7F77DD; --poem-bg: #3C3489; --poem-text: #CECBF6;
+  --essay: #1D9E75; --essay-bg: #085041; --essay-text: #9FE1CB;
+  --story: #ff6124; --story-bg: #7a2d0e; --story-text: #F5C4B3;
+  --pcoll: #7F77DD; --pcoll-bg: #3C3489; --pcoll-text: #CECBF6;
+  --ecoll: #1D9E75; --ecoll-bg: #085041; --ecoll-text: #9FE1CB;
+  --sscoll: #ff6124; --sscoll-bg: #7a2d0e; --sscoll-text: #F5C4B3;
+  --drama: #D4537E; --drama-bg: #993556; --drama-text: #F4C0D1;
+  --memoir: #BA7517; --memoir-bg: #633806; --memoir-text: #FAC775;
+  --nonfiction: #185FA5; --nonfiction-bg: #042C53; --nonfiction-text: #85B7EB;
+  --lgbtq: #e093c8; --lgbtq-bg: #4a1b3a;
+  --r: 8px; --rl: 12px;
+  --sans: 'DM Sans', sans-serif; --serif: 'Lora', serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; }
+.app { max-width: 1140px; margin: 0 auto; padding: 28px 22px; }
+
+/* Topbar */
+.topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 10px; }
+.app-title { font-family: var(--serif); font-size: 24px; font-weight: 400; color: var(--text); letter-spacing: -0.3px; }
+.top-actions { display: flex; gap: 7px; align-items: center; }
+
+/* Buttons */
+button { font-family: var(--sans); cursor: pointer; transition: all 0.15s; }
+.btn { font-size: 12px; padding: 6px 13px; border-radius: var(--r); border: 0.5px solid var(--border); background: transparent; color: var(--muted); display: inline-flex; align-items: center; gap: 5px; }
+.btn:hover { background: var(--bg2); color: var(--text); border-color: var(--border2); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-primary:hover { opacity: 0.9; background: var(--accent); }
+.btn-ghost { border-style: dashed; }
+.btn-sm { font-size: 11px; padding: 4px 10px; }
+.btn-icon { padding: 5px 7px; font-size: 14px; color: var(--hint); border: none; background: transparent; border-radius: 5px; }
+.btn-icon:hover { background: var(--bg3); color: var(--text); }
+
+/* Pills */
+.pill-row { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 14px; }
+.pill { font-size: 11px; padding: 4px 12px; border-radius: 999px; border: 0.5px solid var(--border); color: var(--muted); background: transparent; cursor: pointer; white-space: nowrap; }
+.pill:hover { border-color: var(--border2); color: var(--text); }
+.pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.pill.history-pill { background: var(--bg3); border-color: var(--border2); color: var(--text); }
+.pill.history-pill.active { background: var(--bg3); border-color: var(--accent); color: var(--accent); }
+
+/* Search */
+.search-wrap { position: relative; margin-bottom: 20px; }
+.search-wrap input::-webkit-search-decoration, .search-wrap input::-webkit-search-cancel-button, .search-wrap input::-webkit-search-results-button, .search-wrap input::-webkit-search-results-decoration { display: none; }
+.search-wrap input { width: 100%; padding: 8px 12px 8px 34px; border-radius: var(--r); border: 0.5px solid var(--border); background: var(--bg2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23555451' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 10px center; color: var(--text); font-size: 13px; font-family: var(--sans); }
+.search-wrap input:focus { outline: none; border-color: var(--accent); }
+.search-wrap input::placeholder { color: var(--hint); }
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=text]::-webkit-search-decoration, input[type=text]::-webkit-search-cancel-button { display: none !important; }
+.search-results > * { list-style: none !important; }
+.search-results div { list-style: none !important; }
+.search-results * { list-style: none; }
+.search-results { -webkit-overflow-scrolling: touch; }
+.search-result-item::before, .search-result-item::marker { display: none; content: none; }
+.search-results { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--r); margin-top: 4px; display: none; max-height: 420px; overflow-y: auto; list-style: none; }
+.search-results.show { display: block; }
+.search-author-group { border-bottom: 0.5px solid var(--bg3); }
+.search-section-label { font-size: 10px; font-weight: 500; color: var(--hint); text-transform: uppercase; letter-spacing: .07em; padding: 6px 20px 4px; background: var(--bg3); border-bottom: 0.5px solid var(--border); }
+.search-author-header { padding: 9px 12px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: var(--bg2); }
+.search-author-header:hover { background: var(--bg3); }
+.search-author-name { font-size: 13px; font-weight: 500; color: var(--text); }
+.search-author-count { font-size: 11px; color: var(--muted); }
+.search-author-works { display: none; }
+.search-author-works.show { display: block; }
+.search-result-item { padding: 8px 12px 8px 22px; border-bottom: 0.5px solid var(--bg3); display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; list-style: none; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: var(--bg3); }
+.search-see-all { padding: 8px 12px 8px 22px; font-size: 11px; color: var(--accent); cursor: pointer; display: block; }
+.search-see-all:hover { background: var(--bg3); }
+.result-tag { font-size: 10px; padding: 1px 6px; border-radius: 999px; background: var(--bg3); color: var(--muted); white-space: nowrap; }
+/* Search detail panel */
+.search-detail-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 90; }
+.search-detail-overlay.show { display: block; }
+.search-detail-panel { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--rl); padding: 28px; width: 100%; max-width: 600px; z-index: 91; }
+.search-detail-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
+.search-detail-title { font-size: 16px; font-weight: 500; color: var(--text); font-family: var(--serif); font-style: italic; }
+.search-detail-author { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.search-detail-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.search-detail-notes { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; font-style: italic; border-left: 2px solid var(--border); padding-left: 10px; }
+.search-detail-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* Section */
+.sh { font-size: 10px; font-weight: 500; color: var(--hint); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
+.divider { height: 0.5px; background: var(--bg3); margin: 22px 0; }
+.card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--rl); padding: 14px; }
+.clabel { font-size: 10px; font-weight: 500; color: var(--hint); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+
+/* Badges & tags */
+.badge { font-size: 10px; padding: 2px 7px; border-radius: 999px; white-space: nowrap; }
+.b-novel { background: var(--novel-bg); color: var(--novel-text); }
+.b-poem { background: var(--poem-bg); color: var(--poem-text); }
+.b-essay { background: var(--essay-bg); color: var(--essay-text); }
+.b-story { background: var(--story-bg); color: var(--story-text); }
+.b-pcoll { background: var(--pcoll-bg); color: var(--pcoll-text); }
+.b-ecoll { background: var(--ecoll-bg); color: var(--ecoll-text); }
+.b-sscoll { background: var(--sscoll-bg); color: var(--sscoll-text); }
+.b-drama { background: var(--drama-bg); color: var(--drama-text); }
+.b-memoir { background: var(--memoir-bg); color: var(--memoir-text); }
+.b-nonfiction { background: var(--nonfiction-bg); color: var(--nonfiction-text); }
+.tag { font-size: 10px; padding: 2px 6px; border-radius: 999px; background: var(--bg3); color: var(--muted); white-space: nowrap; }
+.tag-lgbtq { font-size: 10px; padding: 2px 6px; border-radius: 999px; background: var(--lgbtq-bg); color: var(--lgbtq); white-space: nowrap; }
+
+/* View toggle */
+.view-toggle { display: flex; border: 0.5px solid var(--border); border-radius: var(--r); overflow: hidden; width: fit-content; margin-bottom: 12px; }
+.vtab { font-size: 11px; padding: 5px 12px; background: transparent; border: none; color: var(--hint); cursor: pointer; display: flex; align-items: center; gap: 5px; }
+.vtab:first-child { border-right: 0.5px solid var(--border); }
+.vtab.active { background: var(--bg2); color: var(--text); }
+
+/* Currently reading cards */
+.cr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+.cr-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--rl); padding: 14px; cursor: pointer; transition: border-color 0.15s; }
+.cr-card:hover { border-color: var(--border2); }
+.cr-card.expanded { border-color: var(--accent); border-radius: var(--rl) var(--rl) 0 0; border-bottom: none; }
+.cr-top { display: flex; align-items: center; gap: 5px; margin-bottom: 8px; flex-wrap: wrap; }
+.cr-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; font-family: var(--serif); font-style: italic; }
+.cr-author { font-size: 12px; color: var(--text); margin-bottom: 2px; }
+.cr-translator { font-size: 11px; color: var(--muted); margin-bottom: 2px; min-height: 16px; }
+.cr-started { font-size: 11px; color: var(--hint); margin-bottom: 10px; }
+.prog-row { display: flex; align-items: center; gap: 8px; }
+.prog-track { flex: 1; background: var(--bg3); border-radius: 999px; height: 5px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 999px; background: var(--accent); transition: width 0.3s; }
+.prog-input { width: 44px; font-size: 12px; padding: 3px 5px; border: 0.5px solid var(--border); border-radius: 6px; text-align: center; color: var(--text); background: var(--bg3); font-family: var(--sans); }
+.prog-input:focus { outline: none; border-color: var(--accent); }
+.prog-pct { font-size: 11px; color: var(--muted); }
+.cr-actions { display: flex; gap: 3px; margin-left: 2px; }
+.cr-hint { font-size: 11px; color: var(--hint); margin-top: 8px; text-align: center; transition: color 0.15s; border-top: 0.5px solid var(--border); padding-top: 8px; }
+.cr-card:hover .cr-hint { color: var(--muted); }
+.cr-card.expanded .cr-hint { color: var(--accent); font-weight: 500; }
+
+/* Journal */
+.journal-wrap { background: var(--bg2); border: 0.5px solid var(--accent); border-top: none; border-radius: 0 0 var(--rl) var(--rl); padding: 14px; }
+.journal-entries { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+.journal-entry { border-left: 2px solid var(--border); padding-left: 10px; }
+.entry-date { font-size: 10px; color: var(--hint); margin-bottom: 3px; }
+.entry-text { font-size: 12px; color: var(--text); line-height: 1.7; font-family: var(--serif); }
+.entry-btns { display: flex; gap: 8px; margin-top: 4px; }
+.entry-btn { font-size: 10px; color: var(--hint); background: transparent; border: none; cursor: pointer; padding: 0; }
+.entry-btn:hover { color: var(--text); }
+.new-entry { border-top: 0.5px solid var(--bg3); padding-top: 12px; }
+.new-entry-label { font-size: 10px; color: var(--hint); margin-bottom: 6px; }
+.new-entry textarea { width: 100%; background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--r); color: var(--text); font-size: 12px; padding: 8px 10px; font-family: var(--serif); resize: none; min-height: 64px; line-height: 1.7; }
+.new-entry textarea:focus { outline: none; border-color: var(--accent); }
+.new-entry textarea::placeholder { color: var(--hint); }
+.entry-save-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+.entry-today { font-size: 10px; color: var(--hint); }
+
+/* CR list view */
+.cr-list-wrap { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--rl); overflow: hidden; }
+
+/* Metrics */
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+.metric { background: var(--bg2); border-radius: var(--r); padding: 11px 13px; }
+.mlabel { font-size: 10px; color: var(--muted); margin-bottom: 5px; display: flex; align-items: center; gap: 4px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.mval { font-size: 22px; font-weight: 500; color: var(--text); line-height: 1; }
+.msub { font-size: 10px; color: var(--hint); margin-top: 3px; }
+
+/* Goal cards */
+.goals-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
+.gcard { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--rl); padding: 11px 13px; position: relative; }
+.gcard.no-goal { opacity: 0.65; }
+.ghead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
+.gname { font-size: 12px; font-weight: 500; color: var(--text); display: flex; align-items: center; gap: 5px; }
+.gfrac { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.gedit { font-size: 12px; color: var(--hint); cursor: pointer; opacity: 0; transition: opacity 0.15s; background: transparent; border: none; padding: 0 2px; }
+.gcard:hover .gedit { opacity: 1; }
+.gedit:hover { color: var(--text); }
+.gbar-track { background: var(--bg3); border-radius: 999px; height: 6px; overflow: hidden; margin-bottom: 4px; }
+.gbar-fill { height: 100%; border-radius: 999px; }
+.gsub { font-size: 10px; color: var(--hint); }
+.gno-row { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+.gset-btn { font-size: 10px; padding: 2px 8px; border-radius: 999px; border: 0.5px solid var(--border); background: transparent; color: var(--hint); cursor: pointer; }
+.gset-btn:hover { border-color: var(--accent); color: var(--accent); }
+.ginput { font-size: 12px; padding: 3px 7px; border: 0.5px solid var(--accent); border-radius: 5px; background: var(--bg3); color: var(--text); width: 60px; font-family: var(--sans); display: none; }
+.ginput:focus { outline: none; }
+
+/* Special goals */
+.special-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
+
+/* Author goals */
+.author-list { display: flex; flex-direction: column; gap: 10px; }
+.arow { display: flex; align-items: center; gap: 10px; }
+.ainfo { min-width: 130px; }
+.aname { font-size: 12px; font-weight: 500; color: var(--text); }
+.ameta { font-size: 10px; color: var(--hint); margin-top: 1px; }
+.abar-wrap { flex: 1; }
+.abar-ahead { display: flex; justify-content: space-between; margin-bottom: 3px; }
+.abar-track { background: var(--bg3); border-radius: 999px; height: 5px; overflow: hidden; }
+.abar-fill { height: 100%; border-radius: 999px; background: var(--accent); }
+.afrac { font-size: 11px; color: var(--muted); min-width: 30px; text-align: right; }
+
+/* Demographics */
+.demo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.lrow { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+.lname { color: var(--text); min-width: 70px; font-size: 11px; }
+.lbar-track { flex: 1; background: var(--bg3); border-radius: 999px; height: 5px; overflow: hidden; }
+.lbar-fill { height: 100%; border-radius: 999px; }
+.lcount { font-size: 11px; color: var(--muted); min-width: 20px; text-align: right; }
+.stat-pair { display: flex; gap: 24px; }
+.stat-n { font-size: 20px; font-weight: 500; color: var(--text); }
+.stat-l { font-size: 10px; color: var(--muted); margin-top: 1px; }
+
+/* AI card */
+.ai-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--rl); padding: 14px; }
+.ai-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.ai-label { font-size: 10px; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: .07em; display: flex; align-items: center; gap: 5px; }
+.ai-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; font-family: var(--serif); font-style: italic; }
+.ai-author { font-size: 12px; color: var(--muted); margin-bottom: 9px; }
+.ai-reason { font-size: 12px; color: var(--muted); line-height: 1.6; border-left: 2px solid var(--accent); padding-left: 10px; }
+.ai-msg { font-size: 12px; color: var(--muted); }
+.ai-msg a { color: var(--accent); text-decoration: none; }
+
+/* Filters */
+.filter-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 12px; width: fit-content; }
+.filter-col { display: flex; flex-direction: column; gap: 5px; }
+.filter-col select { font-size: 10px; padding: 2px 6px; border-radius: 5px; border: 0.5px solid var(--border); background: var(--bg2); color: var(--muted); height: 20px; cursor: pointer; min-width: 160px; font-family: var(--sans); }
+.filter-col select:focus { outline: none; border-color: var(--accent); color: var(--text); }
+.filter-col select.filtered { border-color: var(--accent); color: var(--accent); }
+
+/* Table */
+.table-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--rl); overflow: hidden; margin-bottom: 12px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 11px; table-layout: fixed; }
+th { text-align: left; font-size: 10px; font-weight: 500; color: var(--hint); padding: 8px; border-bottom: 0.5px solid var(--bg3); white-space: nowrap; }
+td { padding: 8px; border-bottom: 0.5px solid var(--bg3); color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--bg3); }
+.td-m { color: var(--hint); }
+.stars { color: #EF9F27; letter-spacing: -1px; }
+.row-actions { display: flex; gap: 3px; opacity: 0; }
+tr:hover .row-actions { opacity: 1; }
+
+/* Import row */
+.irow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+
+/* History view */
+.history-view { display: none; }
+.history-view.show { display: block; }
+.main-view { display: block; }
+.main-view.hidden { display: none; }
+.year-block { margin-bottom: 24px; }
+.year-head { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-family: var(--serif); }
+.year-sub { font-size: 11px; color: var(--hint); font-weight: 400; font-family: var(--sans); }
+.hist-stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+.hist-stat { background: var(--bg2); border-radius: var(--r); padding: 10px 12px; }
+.hist-stat-val { font-size: 18px; font-weight: 500; color: var(--text); }
+.hist-stat-label { font-size: 10px; color: var(--hint); margin-top: 2px; }
+.hit { color: #1D9E75; }
+.miss { color: var(--accent); }
+.no-goal-cell { color: var(--hint); font-size: 10px; }
+
+/* Modals */
+.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; align-items: flex-start; justify-content: center; padding: 40px 16px; overflow-y: auto; }
+.overlay.show { display: flex; }
+.modal { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--rl); padding: 22px; width: 100%; max-width: 600px; margin: auto; }
+.modal-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 0.5px solid var(--bg3); font-family: var(--serif); }
+.modal-close { background: transparent; border: none; color: var(--muted); font-size: 20px; cursor: pointer; line-height: 1; }
+.field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.field-full { grid-column: 1 / -1; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font-size: 11px; color: var(--muted); }
+.field input, .field select, .field textarea { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--r); color: var(--text); font-size: 12px; padding: 7px 10px; width: 100%; font-family: var(--sans); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+.field textarea { resize: vertical; min-height: 64px; }
+.field-note { font-size: 10px; color: var(--hint); margin-top: 3px; font-style: italic; }
+.form-pills { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+.form-pill { font-size: 11px; padding: 4px 11px; border-radius: 999px; border: 0.5px solid var(--border); color: var(--muted); background: transparent; cursor: pointer; }
+.form-pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--r); margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
+.toggle-label { font-size: 12px; color: var(--text); }
+.toggle-sublabel { font-size: 10px; color: var(--hint); margin-top: 2px; }
+.toggle-pills { display: flex; gap: 5px; }
+.toggle-pill { font-size: 11px; padding: 3px 10px; border-radius: 999px; border: 0.5px solid var(--border); color: var(--muted); background: transparent; cursor: pointer; }
+.toggle-pill.active { border-color: var(--muted); color: var(--text); background: var(--bg3); }
+.lgbtq-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--r); margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
+.lgbtq-checks { display: flex; gap: 14px; }
+.check-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); cursor: pointer; }
+.check-item input[type=checkbox] { accent-color: var(--lgbtq); cursor: pointer; }
+.rating-stars { display: flex; gap: 4px; margin-bottom: 12px; }
+.star-btn { background: transparent; border: none; font-size: 22px; color: var(--bg4); cursor: pointer; padding: 0; transition: color 0.1s; }
+.star-btn.lit { color: #EF9F27; }
+.action-row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; padding-top: 14px; border-top: 0.5px solid var(--bg3); }
+
+/* Settings */
+.settings-section { margin-bottom: 18px; }
+.author-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+.author-row { display: grid; grid-template-columns: 1fr 1fr 72px 26px; gap: 6px; align-items: center; }
+.author-row input, .author-row select { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--r); color: var(--text); font-size: 12px; padding: 6px 9px; width: 100%; font-family: var(--sans); }
+.author-row input:focus, .author-row select:focus { outline: none; border-color: var(--accent); }
+.del-btn { background: transparent; border: 0.5px solid var(--border); border-radius: 6px; color: var(--hint); font-size: 14px; cursor: pointer; height: 28px; width: 26px; display: flex; align-items: center; justify-content: center; }
+.del-btn:hover { border-color: var(--accent); color: var(--accent); }
+.col-labels { display: grid; grid-template-columns: 1fr 1fr 72px 26px; gap: 6px; margin-bottom: 5px; }
+.col-label { font-size: 10px; color: var(--hint); }
+.api-wrap { position: relative; }
+.api-wrap input { padding-right: 56px; font-family: monospace; }
+.api-toggle { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 10px; color: var(--hint); cursor: pointer; background: transparent; border: none; font-family: var(--sans); }
+.api-toggle:hover { color: var(--text); }
+
+/* Import */
+.drop-zone { border: 1px dashed var(--border); border-radius: var(--r); padding: 28px; text-align: center; color: var(--muted); font-size: 12px; cursor: pointer; transition: border-color 0.15s; }
+.drop-zone:hover { border-color: var(--accent); color: var(--text); }
+.drop-zone input { display: none; }
+
+/* Close-out modal */
+.closeout-year { font-size: 14px; color: var(--text); margin-bottom: 16px; line-height: 1.6; }
+.closeout-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px; }
+.closeout-table th { text-align: left; font-size: 10px; color: var(--hint); padding: 0 8px 8px; border-bottom: 0.5px solid var(--bg3); }
+.closeout-table td { padding: 8px; border-bottom: 0.5px solid var(--bg3); color: var(--text); }
+
+/* Collection panel */
+.cp-stat { display: flex; flex-direction: column; gap: 4px; padding-right: 20px; }
+.cp-stat-val { font-size: 20px; font-weight: 500; color: var(--text); }
+.cp-stat-label { font-size: 11px; color: var(--hint); text-transform: uppercase; letter-spacing: .05em; }
+.cp-child-row { display: flex; align-items: flex-start; gap: 10px; padding: 14px 16px; border-bottom: 0.5px solid var(--bg3); cursor: pointer; transition: background 0.12s; }
+.cp-child-row:last-child { border-bottom: none; }
+.cp-child-row:hover { background: var(--bg3); }
+.cp-child-title { flex: 1; font-size: 13px; font-style: italic; color: var(--text); line-height: 1.4; transition: color 0.12s; }
+.cp-child-row:hover .cp-child-title { color: var(--accent); }
+.cp-child-status { font-size: 11px; color: var(--hint); white-space: nowrap; padding-top: 2px; }
+
+/* Expandable log rows */
+.log-detail-row td { background: var(--bg3) !important; padding: 12px 14px !important; white-space: normal !important; }
+.log-detail-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.log-detail-field { display: flex; flex-direction: column; gap: 3px; }
+.log-detail-label { font-size: 10px; color: var(--hint); text-transform: uppercase; letter-spacing: .05em; }
+.log-detail-value { font-size: 12px; color: var(--text); }
+.log-detail-notes { grid-column: 1 / -1; }
+.log-detail-journal { grid-column: 1 / -1; border-top: 0.5px solid var(--border); padding-top: 10px; margin-top: 4px; }
+.journal-entry-small { padding: 6px 0; border-bottom: 0.5px solid var(--border); }
+.journal-entry-small:last-child { border-bottom: none; }
+.journal-entry-date { font-size: 10px; color: var(--hint); margin-bottom: 3px; }
+.journal-entry-text { font-size: 12px; color: var(--text); line-height: 1.6; font-family: var(--serif); }
+
+/* Empty */
+.empty { text-align: center; padding: 28px; color: var(--hint); font-size: 12px; font-style: italic; }
+
+/* Re-read tags */
+.tag-reread { font-size:10px; padding:2px 6px; border-radius:999px; background:#3C3489; color:#CECBF6; white-space:nowrap; }
+.tag-wantreread { font-size:10px; padding:2px 6px; border-radius:999px; background:#2e2c29; color:#7F77DD; white-space:nowrap; cursor:default; }
+
+/* Backup reminder banner */
+.backup-banner { display:none; background:var(--bg2); border:0.5px solid var(--border); border-left:3px solid var(--accent); border-radius:var(--r); padding:11px 14px; margin-bottom:16px; align-items:center; gap:12px; flex-wrap:wrap; }
+.backup-banner.show { display:flex; }
+.backup-banner-text { flex:1; font-size:12px; color:var(--text); line-height:1.5; }
+.backup-banner-text span { color:var(--muted); font-size:11px; display:block; margin-top:2px; }
+.backup-banner-actions { display:flex; gap:6px; align-items:center; flex-shrink:0; }
+.backup-dismiss { font-size:11px; color:var(--hint); background:transparent; border:none; cursor:pointer; padding:2px 6px; }
+.backup-dismiss:hover { color:var(--text); }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .goals-grid, .special-grid, .demo-grid, .hist-stat-grid { grid-template-columns: 1fr; }
+  .field-grid { grid-template-columns: 1fr; }
+  .field-full { grid-column: 1; }
+  .filter-cols { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="backup-banner" id="backupBanner">
+    <div class="backup-banner-text">
+      Time for a backup — it's been 7 days since your last export.
+      <span id="backupBannerSub"></span>
+    </div>
+    <div class="backup-banner-actions">
+      <button class="btn btn-sm btn-primary" onclick="exportDataAndDismiss()">&#8595; Export now</button>
+      <button class="backup-dismiss" onclick="dismissBackupBanner()">Remind me later</button>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+    <span class="app-title">Reading log</span>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button class="btn btn-sm" onclick="openSettings()">&#9881; Settings</button>
+      <button class="btn btn-sm" onclick="exportData()">&#8595; Export</button>
+      <button class="pill history-pill" id="historyPill" data-type="history">&#128336; History</button>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <input type="text" id="searchInput" autocomplete="off" placeholder="Search titles and authors across all sections..." oninput="handleSearch()" />
+    <div class="search-results" id="searchResults"></div>
+  </div>
+
+  <!-- MAIN VIEW -->
+  <div class="main-view" id="mainView">
+
+    <!-- Action bar -->
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">
+    <button class="btn btn-ghost btn-sm" onclick="openImport('csv')">&#8593; Import CSV</button>
+    <button class="btn btn-ghost btn-sm" onclick="openImport('storygraph')">&#8593; Import StoryGraph</button>
+    <button class="btn btn-ghost btn-sm" onclick="openImport('backup')">&#8635; Restore from backup</button>
+    <button class="btn btn-ghost btn-sm" onclick="openAdd('tbr')">+ Add to TBR</button>
+    <button class="btn btn-ghost btn-sm" onclick="openAdd('completed')">+ Add entry</button>
+  </div>
+
+  <!-- Currently reading -->
+    <div class="sh" style="display:flex;align-items:center;justify-content:space-between">
+      <span>Currently reading</span>
+      <div class="view-toggle">
+        <button class="vtab active" id="vtCards" onclick="setView('cards')">&#9646;&#9646; Cards</button>
+        <button class="vtab" id="vtList" onclick="setView('list')">&#9776; List</button>
+      </div>
+    </div>
+    <div id="crSection"></div>
+    <div style="margin-top:10px">
+      <button class="btn btn-ghost btn-sm" onclick="openAdd('currentlyReading')">+ Add currently reading</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- AI pick -->
+    <div class="sh">AI pick from your TBR</div>
+    <div class="ai-card" id="aiCard">
+      <div class="ai-header">
+        <span class="ai-label">&#10024; Suggested for you</span>
+        <button class="btn btn-sm" onclick="refreshAI()">&#8635; Refresh</button>
+      </div>
+      <div id="aiContent"><p class="ai-msg">Enter your Anthropic API key in <a href="#" onclick="openSettings();return false;">Settings</a> to get personalised TBR recommendations.</p></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 2025 Tracker -->
+    <div class="sh" id="trackerHead">2025 Tracker &middot; completed reads only</div>
+    <div class="metric-grid" id="metricGrid"></div>
+    <div class="goals-grid" id="goalsGrid"></div>
+
+    <!-- Special goals -->
+    <div class="sh" style="margin-top:16px">Special goals</div>
+    <div class="special-grid" id="specialGrid"></div>
+
+    <!-- Author goals -->
+    <div class="sh" style="margin-top:4px">Author goals</div>
+    <div class="card" id="authorGoalsCard"></div>
+
+    <div class="divider"></div>
+
+    <!-- Demographics -->
+    <div class="sh">Demographics</div>
+    <div class="demo-grid">
+      <div class="card">
+        <div class="clabel">Original language</div>
+        <div id="langBars"></div>
+      </div>
+      <div class="card">
+        <div class="clabel">Series vs standalone &middot; novels</div>
+        <div class="stat-pair" style="margin-bottom:8px" id="seriesStats"></div>
+        <div class="gbar-track" style="margin-bottom:16px"><div class="gbar-fill" id="seriesBar" style="background:var(--hint)"></div></div>
+        <div class="clabel">LGBTQ+</div>
+        <div class="stat-pair" id="lgbtqStats"></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Completed log -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+      <div class="sh" style="margin-bottom:0">Completed log</div>
+      <div class="pill-row" id="typePills" style="margin-bottom:0">
+        <button class="pill active" data-type="all">All</button>
+        <button class="pill" data-type="Novel">Novels</button>
+        <button class="pill" data-type="Short Story">Short stories</button>
+        <button class="pill" data-type="Short Story Collection">SS collections</button>
+        <button class="pill" data-type="Essay">Essays</button>
+        <button class="pill" data-type="Essay Collection">Essay collections</button>
+        <button class="pill" data-type="Poem">Poems</button>
+        <button class="pill" data-type="Poetry Collection">Poetry collections</button>
+        <button class="pill" data-type="Drama">Drama</button>
+        <button class="pill" data-type="Memoir">Memoir</button>
+        <button class="pill" data-type="Non-fiction">Non-fiction</button>
+      </div>
+    </div>
+    <div class="filter-cols">
+      <div class="filter-col">
+        <select id="fYear" onchange="applyFilters()"><option value="">All years</option></select>
+        <select id="fMonth" onchange="applyFilters()"><option value="">All months</option><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select>
+        <select id="fLGBTQ" onchange="applyFilters()"><option value="">LGBTQ+</option><option value="author">Author</option><option value="content">Content</option><option value="both">Author &amp; Content</option></select>
+        <select id="fFormat" onchange="applyFilters()"><option value="">All formats</option><option value="Text">Text only</option><option value="Audio">Audio only</option></select>
+        <select id="fReread" onchange="applyFilters()"><option value="">All reads</option><option value="reread">Re-reads only</option><option value="wantreread">Want to re-read</option><option value="first">First reads only</option></select>
+      </div>
+      <div class="filter-col">
+        <select id="fLang" onchange="applyFilters()"><option value="">All languages</option></select>
+        <select id="fSeries" onchange="applyFilters()"><option value="">Series or standalone</option><option value="series">Series only</option><option value="standalone">Standalone only</option></select>
+      </div>
+    </div>
+    <div class="table-card" style="max-height:480px;overflow-y:auto">
+      <div class="table-wrap">
+        <table>
+          <colgroup><col style="width:75px"><col style="width:80px"><col style="width:200px"><col style="width:140px"><col style="width:60px"><col style="width:60px"></colgroup>
+          <thead><tr><th>Date</th><th>Type</th><th>Title</th><th>Author</th><th>Translator</th><th>Language</th><th>Rating</th><th>LGBTQ+</th><th>Format</th><th>Notes</th><th></th></tr></thead>
+          <tbody id="logBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- TBR -->
+    <div class="sh">To be read</div>
+    <div class="table-card" style="max-height:400px;overflow-y:auto">
+      <div class="table-wrap">
+        <table>
+          <colgroup><col style="width:140px"><col style="width:108px"><col style="width:75px"><col style="width:72px"><col style="width:100px"><col style="width:95px"><col style="width:52px"><col style="width:52px"><col style="width:44px"></colgroup>
+          <thead><tr><th>Title</th><th>Author</th><th>Type</th><th>Language</th><th>Series</th><th>Genre</th><th>LGBTQ+</th><th>Format</th><th></th></tr></thead>
+          <tbody id="tbrBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  
+  </div>
+
+  <!-- HISTORY VIEW -->
+  <div class="history-view" id="historyView">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+      <div style="font-size:16px;font-weight:400;font-family:var(--serif);color:var(--text)">Reading history</div>
+      <button class="btn btn-sm btn-primary" onclick="openCloseout()">Close out <span id="closeoutYearBtn"></span></button>
+    </div>
+    <div id="historyContent"></div>
+  </div>
+</div>
+
+<!-- ADD ENTRY MODAL -->
+<div class="overlay" id="addOverlay">
+  <div class="modal">
+    <div class="modal-title">
+      <div style="display:flex;align-items:center;gap:8px">
+        <button id="backToCollectionBtn" class="btn btn-sm" style="display:none;font-size:11px;padding:3px 10px" onclick="closeModal('addOverlay');openCollectionPanel(_editFromCollection)">&#8592; Back</button>
+        <span id="addModalTitle">Add entry</span>
+      </div>
+      <button class="modal-close" onclick="closeModal('addOverlay')">&times;</button>
+    </div>
+    <div style="margin-bottom:12px">
+      <div class="sh" style="margin-bottom:6px">Status</div>
+      <div class="form-pills" id="statusPills">
+        <button class="form-pill active" data-val="completed">Completed</button>
+        <button class="form-pill" data-val="currentlyReading">Currently reading</button>
+        <button class="form-pill" data-val="tbr">To be read</button>
+      </div>
+    </div>
+    <div style="margin-bottom:12px">
+      <div class="sh" style="margin-bottom:6px">Type</div>
+      <div class="form-pills" id="typePillsForm">
+        <button class="form-pill active" data-val="Novel">Novel</button>
+        <button class="form-pill" data-val="Short Story">Short story</button>
+        <button class="form-pill" data-val="Short Story Collection">Short story collection</button>
+        <button class="form-pill" data-val="Essay">Essay</button>
+        <button class="form-pill" data-val="Essay Collection">Essay collection</button>
+        <button class="form-pill" data-val="Poem">Poem</button>
+        <button class="form-pill" data-val="Poetry Collection">Poetry collection</button>
+        <button class="form-pill" data-val="Drama">Drama</button>
+        <button class="form-pill" data-val="Memoir">Memoir</button>
+        <button class="form-pill" data-val="Non-fiction">Non-fiction</button>
+      </div>
+    </div>
+    <div class="field-grid">
+      <div class="field field-full"><label>Title</label><input type="text" id="fTitle" placeholder="e.g. Middlemarch" /></div>
+      <div class="field"><label>Author</label><input type="text" id="fAuthor" placeholder="e.g. George Eliot" /></div>
+      <div class="field"><label>Translator <span style="color:var(--hint)">(if applicable)</span></label><input type="text" id="fTranslator" placeholder="e.g. Richard Howard" /></div>
+      <div class="field"><label>Original language</label>
+        <select id="fLangInput"><option>English</option><option>French</option><option>Spanish</option><option>German</option><option>Italian</option><option>Russian</option><option>Portuguese</option><option>Danish</option><option>Icelandic</option><option>Japanese</option><option>Chinese</option><option>Arabic</option><option>Latin</option><option>Ancient Greek</option><option>Other</option></select>
+      </div>
+      <div class="field" id="genreField"><label>Category</label>
+        <select id="fGenre"><option value="">— select —</option><option>Literary Fiction</option><option>Classic</option><option>Sci-Fi</option><option>Fantasy</option></select>
+      </div>
+    </div>
+
+    <div class="toggle-row" style="margin-bottom:10px">
+      <div><div class="toggle-label">Format</div><div class="toggle-sublabel">How you read or listened</div></div>
+      <div class="toggle-pills" id="formatPills">
+        <button class="toggle-pill active" data-val="Text">Text</button>
+        <button class="toggle-pill" data-val="Audio">Audio</button>
+      </div>
+    </div>
+    <div class="lgbtq-row">
+      <div><div class="toggle-label">LGBTQ+ tag</div><div class="toggle-sublabel">Tag what applies</div></div>
+      <div class="lgbtq-checks">
+        <label class="check-item"><input type="checkbox" id="lgbtqAuthor" /> Author</label>
+        <label class="check-item"><input type="checkbox" id="lgbtqContent" /> Content</label>
+      </div>
+    </div>
+    <div class="toggle-row" id="wantRereadRow" style="margin-bottom:10px">
+      <div><div class="toggle-label">Want to re-read?</div><div class="toggle-sublabel">Flags this entry in the log as a future re-read</div></div>
+      <div class="toggle-pills" id="wantRereadPills">
+        <button class="toggle-pill active" data-val="no">No</button>
+        <button class="toggle-pill" data-val="yes">Yes</button>
+      </div>
+    </div>
+    <div id="seriesFields" class="field-grid" style="margin-bottom:10px">
+      <div class="field"><label>Series name</label><input type="text" id="fSeriesName" placeholder="e.g. Cromwell" /></div>
+      <div class="field"><label>Volume #</label><input type="number" id="fSeriesNum" placeholder="e.g. 1" min="1" /></div>
+    </div>
+    <div class="field-grid" style="margin-bottom:10px">
+      <div class="field" id="dateFinishedField"><label>Date finished</label><input type="date" id="fDateFinished" /></div>
+      <div class="field" id="dateStartedField"><label>Started date</label><input type="date" id="fDateStarted" /></div>
+    </div>
+    <div id="ratingSection" style="margin-bottom:12px">
+      <div class="sh" style="margin-bottom:6px">Rating</div>
+      <select id="ratingSelect" style="width:130px;background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--r);color:var(--text);font-size:12px;padding:6px 10px;font-family:var(--sans)">
+        <option value="0">— no rating —</option>
+        <option value="1">1 ★</option><option value="1.5">1.5 ★</option>
+        <option value="2">2 ★</option><option value="2.5">2.5 ★</option>
+        <option value="3">3 ★</option><option value="3.5">3.5 ★</option>
+        <option value="4">4 ★</option><option value="4.5">4.5 ★</option>
+        <option value="5">5 ★</option>
+      </select>
+      <div id="ratingHistoryDisplay" style="display:none;margin-top:8px;font-size:11px;color:var(--hint)"></div>
+    </div>
+    <div class="field" id="notesField" style="margin-bottom:10px"><label>Notes / source</label><textarea id="fNotes" placeholder="e.g. Oscar Williams Anthology, or any thoughts..."></textarea><div class="field-note">Source is especially useful for poems, essays, and short stories</div></div>
+    <div class="field" id="reviewField" style="margin-bottom:10px"><label>Review <span style="color:var(--hint)">(optional — not shown in log table)</span></label><textarea id="fReview" placeholder="Longer thoughts on this work..."></textarea></div>
+    <div class="field" id="progressField" style="margin-bottom:10px"><label>Progress %</label><input type="number" id="fProgress" value="0" min="0" max="100" /></div>
+    <div class="action-row">
+      <button class="btn" onclick="closeModal('addOverlay')">Cancel</button>
+      <button class="btn" id="rereadFromEditBtn" style="display:none;color:var(--poem)" onclick="closeModal('addOverlay');initiateReread(_editId)">&#8635; Start re-read</button>
+      <button class="btn btn-primary" onclick="saveEntry()">Save entry</button>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="overlay" id="settingsOverlay">
+  <div class="modal">
+    <div class="modal-title">Settings <button class="modal-close" onclick="closeModal('settingsOverlay')">&times;</button></div>
+    <div class="settings-section">
+      <div class="sh">AI recommendation</div>
+      <div class="field"><label>Anthropic API key</label>
+        <div class="api-wrap"><input type="password" id="apiKeyInput" placeholder="sk-ant-..." /><button class="api-toggle" onclick="toggleApiKey()">show</button></div>
+        <div class="field-note">Stored locally only. Used for TBR recommendations. Get one at console.anthropic.com</div>
+      </div>
+    </div>
+    <div class="divider" style="margin:12px 0"></div>
+    <div class="settings-section">
+      <div class="sh">General</div>
+      <div class="field-grid">
+        <div class="field"><label>Current tracking year</label><input type="number" id="trackingYear" value="2025" /></div>
+      </div>
+    </div>
+    <div class="divider" style="margin:12px 0"></div>
+    <div class="settings-section">
+      <div class="sh" id="goalsSettingsHead">Annual goals</div>
+      <div class="field-grid">
+        <div class="field"><label>Books (novels + collections)</label><input type="number" id="goalBooks" min="0" value="30" /></div>
+        <div class="field"><label>Poems</label><input type="number" id="goalPoem" min="0" value="200" /></div>
+        <div class="field"><label>Short stories</label><input type="number" id="goalStory" min="0" value="100" /></div>
+        <div class="field"><label>Essays</label><input type="number" id="goalEssay" min="0" value="0" /><div class="field-note">0 = no goal state</div></div>
+      </div>
+    </div>
+    <div class="divider" style="margin:12px 0"></div>
+    <div class="settings-section">
+      <div class="sh">Special goals</div>
+      <div class="field-grid">
+        <div class="field"><label>Series novels</label><input type="number" id="goalSeries" min="0" value="10" /></div>
+        <div class="field"><label>Fantasy novels</label><input type="number" id="goalFantasy" min="0" value="5" /></div>
+      </div>
+      <div class="field-note" style="margin-top:-4px">Set to 0 to hide from dashboard</div>
+    </div>
+    <div class="divider" style="margin:12px 0"></div>
+    <div class="settings-section">
+      <div class="sh">Author goals</div>
+      <div class="col-labels"><span class="col-label">Author name</span><span class="col-label">Count towards</span><span class="col-label">Goal</span><span class="col-label"></span></div>
+      <div class="author-rows" id="authorGoalRows"></div>
+      <button class="btn btn-ghost btn-sm" onclick="addAuthorGoalRow()">+ Add author goal</button>
+    </div>
+    <div class="divider" style="margin:12px 0"></div>
+    <div class="settings-section">
+      <div class="sh" style="color:#A32D2D">Danger zone</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--bg2);border:0.5px solid #A32D2D;border-radius:var(--r)">
+        <div>
+          <div style="font-size:12px;font-weight:500;color:var(--text)">Clear all data</div>
+          <div style="font-size:10px;color:var(--hint);margin-top:2px">Permanently deletes all entries, goals, settings and archived years. Cannot be undone.</div>
+        </div>
+        <button class="btn btn-sm" style="border-color:#A32D2D;color:#A32D2D;flex-shrink:0;margin-left:16px" onclick="clearAllData()">Clear all data</button>
+      </div>
+    </div>
+    <div class="action-row">
+      <button class="btn" onclick="closeModal('settingsOverlay')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveSettings()">Save settings</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMPORT MODAL -->
+<div class="overlay" id="importOverlay">
+  <div class="modal">
+    <div class="modal-title"><span id="importTitle">Import CSV</span><button class="modal-close" onclick="closeModal('importOverlay')">&times;</button></div>
+    <div id="importInstructions" style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6"></div>
+    <div class="drop-zone" id="dropZone" onclick="document.getElementById('csvFileInput').click()">
+      <div style="font-size:28px;margin-bottom:8px">&#8686;</div>
+      <div id="dropZoneLabel">Click to choose a file, or drag and drop</div>
+      <input type="file" id="csvFileInput" accept=".csv,.json" onchange="handleFileImport(event)" />
+    </div>
+    <div id="importFeedback" style="margin-top:12px;font-size:12px;color:var(--muted)"></div>
+    <div id="duplicateReview" style="display:none;margin-top:14px">
+      <div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:8px" id="dupTitle"></div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px" id="dupSubtitle"></div>
+      <div id="dupList" style="max-height:220px;overflow-y:auto;border:0.5px solid var(--border);border-radius:var(--r);margin-bottom:12px"></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn btn-sm" onclick="importSkipAllDups()">Skip all duplicates</button>
+        <button class="btn btn-sm btn-primary" onclick="importAddSelected()">Add selected</button>
+      </div>
+    </div>
+    <div class="action-row"><button class="btn" onclick="closeModal('importOverlay')">Close</button></div>
+  </div>
+</div>
+
+<!-- CLOSE OUT MODAL -->
+<div class="overlay" id="closeoutOverlay">
+  <div class="modal">
+    <div class="modal-title"><span id="closeoutTitle">Close out year</span><button class="modal-close" onclick="closeModal('closeoutOverlay')">&times;</button></div>
+    <div id="closeoutContent"></div>
+    <div class="action-row">
+      <button class="btn" onclick="closeModal('closeoutOverlay')">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmCloseout()">Archive this year</button>
+    </div>
+  </div>
+</div>
+
+<!-- FINISH READING MODAL -->
+<div class="overlay" id="finishOverlay">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-title">Mark as complete <button class="modal-close" onclick="closeModal('finishOverlay')">&times;</button></div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:16px">When did you finish <strong id="finishBookTitle" style="color:var(--text)"></strong>?</div>
+    <div class="field" style="margin-bottom:16px"><label>Date finished</label><input type="date" id="finishDate" /></div>
+    <div id="ratingFinish" style="margin-bottom:12px">
+      <div class="sh" style="margin-bottom:6px">Rating</div>
+      <select id="finishRatingSelect" style="width:130px;background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--r);color:var(--text);font-size:12px;padding:6px 10px;font-family:var(--sans)">
+        <option value="0">— no rating —</option>
+        <option value="1">1 ★</option><option value="1.5">1.5 ★</option>
+        <option value="2">2 ★</option><option value="2.5">2.5 ★</option>
+        <option value="3">3 ★</option><option value="3.5">3.5 ★</option>
+        <option value="4">4 ★</option><option value="4.5">4.5 ★</option>
+        <option value="5">5 ★</option>
+      </select>
+    </div>
+    <div class="field" style="margin-bottom:16px">
+      <label>Final review / notes <span style="color:var(--hint)">(optional)</span></label>
+      <textarea id="finishNotes" placeholder="Any final thoughts on the book..." style="min-height:72px"></textarea>
+    </div>
+    <div class="action-row">
+      <button class="btn" onclick="closeModal('finishOverlay')">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmFinish()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- COLLECTION DETAIL PANEL -->
+<div class="overlay" id="collectionOverlay">
+  <div class="modal" style="max-width:540px">
+    <div class="modal-title">
+      <div style="display:flex;align-items:center;gap:8px">
+        <button id="cpBackToSearch" class="btn btn-sm" style="font-size:11px;padding:3px 10px;display:none" onclick="closeModal('collectionOverlay');setTimeout(()=>document.getElementById('searchInput').focus(),50)">&#8592; Search</button>
+        <div>
+          <div id="cpTitle" style="font-family:var(--serif);font-style:italic;font-size:18px"></div>
+          <div id="cpAuthor" style="font-size:12px;color:var(--muted);margin-top:3px;font-weight:400"></div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal('collectionOverlay')">&times;</button>
+    </div>
+    <div id="cpMeta" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px"></div>
+    <div id="cpStats" style="display:flex;gap:16px;margin-bottom:16px;padding:10px 12px;background:var(--bg2);border-radius:var(--r)"></div>
+    <div class="divider" style="margin:12px 0"></div>
+    <div id="cpChildLabel" class="clabel" style="margin-bottom:8px"></div>
+    <div id="cpChildList" style="border:0.5px solid var(--border);border-radius:var(--r);overflow:hidden;max-height:240px;overflow-y:auto;margin-bottom:16px"></div>
+    <div id="cpActions" style="display:flex;gap:10px;flex-wrap:wrap"></div>
+  </div>
+</div>
+
+<!-- RE-READ CONFIRM MODAL (for long-form types) -->
+<div class="overlay" id="rereadOverlay">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-title">Start re-reading <button class="modal-close" onclick="closeModal('rereadOverlay')">&times;</button></div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:16px">Starting a new read of <strong id="rereadBookTitle" style="color:var(--text)"></strong>. The original entry will stay untouched.</div>
+    <div class="field" style="margin-bottom:16px"><label>Started date</label><input type="date" id="rereadStartDate" /></div>
+    <div class="action-row">
+      <button class="btn" onclick="closeModal('rereadOverlay')">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmReread()">Start re-reading</button>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK RE-READ MODAL (for short-form types: Poem, Essay, Short Story) -->
+<div class="overlay" id="quickRereadOverlay">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-title">Log re-read <button class="modal-close" onclick="closeModal('quickRereadOverlay')">&times;</button></div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:16px">Logging a re-read of <strong id="quickRereadTitle" style="color:var(--text)"></strong>.</div>
+    <div class="field" style="margin-bottom:12px"><label>Date read</label><input type="date" id="quickRereadDate" /></div>
+    <div id="quickRereadRatingWrap" style="margin-bottom:12px">
+      <div class="sh" style="margin-bottom:6px">Rating <span style="color:var(--hint);font-weight:400">(optional)</span></div>
+      <select id="quickRereadRatingSelect" style="width:130px;background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--r);color:var(--text);font-size:12px;padding:6px 10px;font-family:var(--sans)">
+        <option value="0">— no rating —</option>
+        <option value="1">1 ★</option><option value="1.5">1.5 ★</option>
+        <option value="2">2 ★</option><option value="2.5">2.5 ★</option>
+        <option value="3">3 ★</option><option value="3.5">3.5 ★</option>
+        <option value="4">4 ★</option><option value="4.5">4.5 ★</option>
+        <option value="5">5 ★</option>
+      </select>
+    </div>
+    <div class="field" style="margin-bottom:16px"><label>Notes <span style="color:var(--hint)">(optional)</span></label><textarea id="quickRereadNotes" placeholder="Any thoughts on this re-read..." style="min-height:56px"></textarea></div>
+    <div class="action-row">
+      <button class="btn" onclick="closeModal('quickRereadOverlay')">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmQuickReread()">Save re-read</button>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH DETAIL PANEL -->
+<div class="search-detail-overlay" id="searchDetailOverlay" onclick="closeSearchDetail()"></div>
+<div class="search-detail-panel" id="searchDetailPanel" style="display:none">
+  <div class="search-detail-header">
+    <div>
+      <div class="search-detail-title" id="sdTitle"></div>
+      <div class="search-detail-author" id="sdAuthor"></div>
+    </div>
+    <button class="modal-close" onclick="closeSearchDetail()">&times;</button>
+  </div>
+  <div class="search-detail-meta" id="sdMeta"></div>
+  <div class="search-detail-notes" id="sdNotes" style="display:none"></div>
+  <div class="search-detail-actions" id="sdActions"></div>
+</div>
+
+<script>
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MONTHS_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const BOOK_TYPES = ['Novel','Short Story Collection','Essay Collection','Poetry Collection','Drama','Memoir','Non-fiction'];
+const TYPE_CLASS = {'Novel':'b-novel','Poem':'b-poem','Essay':'b-essay','Short Story':'b-story','Poetry Collection':'b-pcoll','Essay Collection':'b-ecoll','Short Story Collection':'b-sscoll','Drama':'b-drama','Memoir':'b-memoir','Non-fiction':'b-nonfiction'};
+const TYPE_COLOR = {'Novel':'var(--novel)','Poem':'var(--poem)','Essay':'var(--essay)','Short Story':'var(--story)','Poetry Collection':'var(--pcoll)','Essay Collection':'var(--ecoll)','Short Story Collection':'var(--sscoll)','Drama':'var(--drama)','Memoir':'var(--memoir)','Non-fiction':'var(--nonfiction)'};
+const TYPE_LABEL = {'Novel':'Novels','Poem':'Poems','Essay':'Essays','Short Story':'Short stories','Poetry Collection':'Poetry collections','Essay Collection':'Essay collections','Short Story Collection':'Short story collections','Drama':'Drama','Memoir':'Memoir','Non-fiction':'Non-fiction'};
+
+let state = {
+  entries: [],
+  expandedRows: new Set(),
+  authorFilter: null,
+  collectionFilter: null,
+  settings: {
+    apiKey:'', classicCutoff:1970, trackingYear: new Date().getFullYear(),
+    goals: { Books:30, Poem:200, Story:100, Essay:0, Series:10, Fantasy:5 },
+    authorGoals: [{ author:'Iris Murdoch', type:'Novel', goal:2 },{ author:'D.H. Lawrence', type:'Novel', goal:3 }]
+  },
+  archivedYears: [],
+  activeType: 'all', crView: 'cards',
+  currentStatus:'completed', currentType:'Novel', currentEra:'Classic', currentRating:0,
+  finishId: null, finishRating: 0,
+  importMode: 'csv'
+};
+
+function load() {
+  try {
+    const d = localStorage.getItem('rl2_entries'); if(d) state.entries = JSON.parse(d);
+    const s = localStorage.getItem('rl2_settings'); if(s) state.settings = {...state.settings,...JSON.parse(s)};
+    const a = localStorage.getItem('rl2_archive'); if(a) state.archivedYears = JSON.parse(a);
+  } catch(e){}
+}
+function save() {
+  localStorage.setItem('rl2_entries', JSON.stringify(state.entries));
+  localStorage.setItem('rl2_settings', JSON.stringify(state.settings));
+  localStorage.setItem('rl2_archive', JSON.stringify(state.archivedYears));
+}
+function genId() { return Date.now().toString(36)+Math.random().toString(36).slice(2); }
+function fmtDateShort(d) { if(!d) return '—'; const dt=new Date(d+'T00:00:00'); return MONTHS[dt.getMonth()]+' '+dt.getDate(); }
+function fmtDateFull(d) { if(!d) return '—'; const dt=new Date(d+'T00:00:00'); return MONTHS_FULL[dt.getMonth()]+' '+dt.getDate()+', '+dt.getFullYear(); }
+function todayISO() { return new Date().toISOString().slice(0,10); }
+function starsHtml(r) { if(!r) return '<span style="color:var(--hint)">—</span>'; const display=Number.isInteger(r)?r:r.toFixed(1); return '<span class="stars">'+display+' ★</span>'; }
+function starsHistoryHtml(e) {
+  const current = e.rating||0;
+  const history = e.ratingHistory||[];
+  if(!current) return '<span style="color:var(--hint)">—</span>';
+  const base = starsHtml(current);
+  if(history.length<=1) return base;
+  const tip = history.map((h,i)=>'Read '+(i+1)+': '+h+' ★').join(' → ');
+  return '<span title="'+tip+'" style="cursor:help">'+base+'</span>';
+}
+function badgeHtml(type) { return '<span class="badge '+(TYPE_CLASS[type]||'')+'">'+(type||'')+'</span>'; }
+function lgbtqHtml(e) { if(!e.lgbtqAuthor&&!e.lgbtqContent) return '<span style="color:var(--hint)">—</span>'; const p=[]; if(e.lgbtqAuthor)p.push('Author'); if(e.lgbtqContent)p.push('Content'); return '<span class="tag-lgbtq">'+p.join(' & ')+'</span>'; }
+function isBook(type) { return BOOK_TYPES.includes(type); }
+
+// Render CR section
+function renderCR() {
+  const cr = state.entries.filter(e=>e.status==='currentlyReading');
+  const el = document.getElementById('crSection');
+  if(!cr.length) { el.innerHTML='<div class="empty">No books currently in progress.</div>'; return; }
+  if(state.crView==='cards') {
+    el.innerHTML='<div class="cr-grid">'+cr.map(e=>{
+      const tags=['<span class="tag">'+e.language+'</span>'];
+      const editBtn='<button class="btn-icon" onclick="event.stopPropagation();openEdit(\''+e.id+'\')" title="Edit entry" style="font-size:13px;padding:1px 4px">&#9998;</button>';
+      if(e.format==='Audio') tags.push('<span class="tag">&#127911; Audio</span>');
+      if(e.genre) tags.push('<span class="tag">'+e.genre+'</span>');
+      if(e.lgbtqAuthor||e.lgbtqContent) tags.push('<span class="tag-lgbtq">LGBTQ+</span>');
+      const prog=e.progress||0;
+      const jCount=(e.journal||[]).length;
+      const journalHtml=renderJournal(e);
+      return `<div><div class="cr-card${e._expanded?' expanded':''}" onclick="toggleJournal('${e.id}',event)">
+        <div class="cr-top">${badgeHtml(e.type)} ${tags.join(' ')} ${editBtn}</div>
+        <div class="cr-title">${e.title}</div>
+        <div class="cr-author">${e.author}</div>
+        <div class="cr-translator">${e.translator?'tr. '+e.translator:''}</div>
+        <div class="cr-started">${e.startedDate?'Started '+fmtDateFull(e.startedDate):''}</div>
+        <div class="prog-row" onclick="event.stopPropagation()">
+          <div class="prog-track"><div class="prog-fill" id="pf-${e.id}" style="width:${prog}%"></div></div>
+          <input class="prog-input" type="number" value="${prog}" min="0" max="100" oninput="updateProgress('${e.id}',this.value)" onchange="updateProgress('${e.id}',this.value)" />
+          <span class="prog-pct">%</span>
+          <div class="cr-actions">
+            <button class="btn-icon" onclick="openFinish('${e.id}')" title="Mark complete" style="color:#1D9E75">&#10003;</button>
+            <button class="btn-icon" onclick="deleteEntry('${e.id}')" title="Remove"><i class="ti ti-trash" aria-hidden="true"></i></button>
+          </div>
+        </div>
+        <div class="cr-hint">${e._expanded?'click to close':'click to open'} journal &middot; ${jCount} entr${jCount===1?'y':'ies'}</div>
+      </div>${journalHtml}</div>`;
+    }).join('')+'</div>';
+  } else {
+    el.innerHTML='<div class="cr-list-wrap"><div class="table-wrap"><table><colgroup><col style="width:78px"><col style="width:148px"><col style="width:108px"><col style="width:92px"><col style="width:70px"><col style="width:58px"><col style="width:110px"><col style="width:56px"></colgroup><thead><tr><th>Type</th><th>Title</th><th>Author</th><th>Translator</th><th>Language</th><th>Progress</th><th></th></tr></thead><tbody>'+
+    cr.map(e=>{const prog=e.progress||0;return`<tr><td>${badgeHtml(e.type)}</td><td style="font-style:italic">${e.title}</td><td>${e.author}</td><td class="td-m">${e.translator||'—'}</td><td><span class="tag">${e.language}</span></td><td><span class="tag">${e.era}</span></td><td><div style="display:flex;align-items:center;gap:5px"><div style="width:56px;height:4px;background:var(--bg3);border-radius:999px;overflow:hidden"><div style="width:${prog}%;height:100%;background:var(--accent);border-radius:999px"></div></div><input style="width:36px;font-size:11px;padding:2px 4px;border:0.5px solid var(--border);border-radius:5px;text-align:center;color:var(--text);background:var(--bg3)" type="number" value="${prog}" oninput="updateProgress('${e.id}',this.value)" onchange="updateProgress('${e.id}',this.value)" /><span style="font-size:10px;color:var(--hint)">%</span></div></td><td><div class="row-actions" style="opacity:1"><button class="btn-icon" onclick="openFinish('${e.id}')" style="color:#1D9E75">&#10003;</button><button class="btn-icon" onclick="deleteEntry('${e.id}')">&#10005;</button></div></td></tr>`;}).join('')+
+    '</tbody></table></div></div>';
+  }
+}
+
+function renderJournal(e) {
+  if(!e._expanded) return '';
+  const entries=(e.journal||[]);
+  return `<div class="journal-wrap">
+    <div class="journal-entries">${entries.length?entries.map((j,i)=>`<div class="journal-entry"><div class="entry-date">${fmtDateFull(j.date)} &middot; ${j.progress}%</div><div class="entry-text">${escHtml(j.text)}</div><div class="entry-btns"><button class="entry-btn" onclick="deleteJournalEntry('${e.id}',${i})">delete</button></div></div>`).join(''):'<div style="font-size:12px;color:var(--hint);font-style:italic">No entries yet — add your first note below.</div>'}</div>
+    <div class="new-entry">
+      <div class="new-entry-label">Add a new entry</div>
+      <textarea id="jta-${e.id}" placeholder="What are you thinking at this point in the book?" onclick="event.stopPropagation()"></textarea>
+      <div class="entry-save-row">
+        <span class="entry-today">Today &middot; ${fmtDateFull(todayISO())} &middot; ${e.progress||0}%</span>
+        <button class="btn btn-sm btn-primary" onclick="event.stopPropagation();saveJournalEntry('${e.id}')">Save</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function escHtml(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function toggleJournal(id, ev) {
+  if(ev.target.closest('.prog-row,.cr-actions,.new-entry,.entry-btns')) return;
+  const e=state.entries.find(x=>x.id===id);
+  if(!e) return;
+  e._expanded=!e._expanded;
+  renderCR();
+}
+
+function saveJournalEntry(id) {
+  const e=state.entries.find(x=>x.id===id); if(!e) return;
+  const ta=document.getElementById('jta-'+id); if(!ta||!ta.value.trim()) return;
+  if(!e.journal) e.journal=[];
+  e.journal.push({ date:todayISO(), progress:e.progress||0, text:ta.value.trim() });
+  save(); renderCR();
+}
+
+function deleteJournalEntry(id, idx) {
+  const e=state.entries.find(x=>x.id===id); if(!e||!e.journal) return;
+  e.journal.splice(idx,1); save(); renderCR();
+}
+
+function updateProgress(id, val) {
+  const e=state.entries.find(x=>x.id===id); if(!e) return;
+  e.progress=Math.max(0,Math.min(100,parseInt(val)||0));
+  const fill=document.getElementById('pf-'+id);
+  if(fill) fill.style.width=e.progress+'%';
+  save();
+}
+
+function setView(v) {
+  state.crView=v;
+  document.getElementById('vtCards').classList.toggle('active',v==='cards');
+  document.getElementById('vtList').classList.toggle('active',v==='list');
+  renderCR();
+}
+
+// Finish reading
+function openFinish(id) {
+  const e=state.entries.find(x=>x.id===id); if(!e) return;
+  state.finishId=id; state.finishRating=e.rating||0;
+  document.getElementById('finishBookTitle').textContent=e.title;
+  document.getElementById('finishDate').value=todayISO();
+  document.getElementById('finishNotes').value='';
+  const frs2=document.getElementById('finishRatingSelect');if(frs2)frs2.value=String(e.rating||0);
+  document.querySelectorAll('#finishStars .star-btn').forEach(s=>{s.classList.toggle('lit',parseInt(s.dataset.v)<=(e.rating||0));});
+  document.getElementById('finishOverlay').classList.add('show');
+}
+function confirmFinish() {
+  const e=state.entries.find(x=>x.id===state.finishId); if(!e) return;
+  e.status='completed';
+  e.dateFinished=document.getElementById('finishDate').value;
+  // Update rating history
+  if(!e.ratingHistory) e.ratingHistory=[e.rating||0];
+  if(state.finishRating) {
+    if(e.isReread) {
+      e.ratingHistory.push(state.finishRating);
+      // Also update source entry rating history
+      if(e.rereadSourceId) {
+        const src=state.entries.find(x=>x.id===e.rereadSourceId);
+        if(src) { if(!src.ratingHistory) src.ratingHistory=[src.rating||0]; src.ratingHistory.push(state.finishRating); src.rating=state.finishRating; }
+      }
+    } else {
+      e.ratingHistory=[state.finishRating];
+    }
+    e.rating=state.finishRating;
+  }
+  save(); renderAll(); closeModal('finishOverlay');
+}
+// finish rating now uses dropdown select
+
+// Goals
+function getYear() { return state.settings.trackingYear||new Date().getFullYear(); }
+function completedThisYear() { const y=getYear(); return state.entries.filter(e=>e.status==='completed'&&e.dateFinished&&new Date(e.dateFinished).getFullYear()===y); }
+
+function renderGoals() {
+  document.getElementById('trackerHead').textContent=getYear()+' Tracker · completed reads only';
+  document.getElementById('closeoutYearBtn').textContent=getYear();
+  const cy=completedThisYear();
+  const books=cy.filter(e=>isBook(e.type)).length;
+  const poems=cy.filter(e=>e.type==='Poem').length;
+  const stories=cy.filter(e=>e.type==='Short Story').length;
+  const essays=cy.filter(e=>e.type==='Essay').length;
+  const g=state.settings.goals;
+
+  // Pace
+  const now=new Date(); const y=getYear();
+  const yearStart=new Date(y,0,1); const yearEnd=new Date(y+1,0,1);
+  const pace=Math.max(0,Math.min(1,(now-yearStart)/(yearEnd-yearStart)));
+
+  const metrics=[
+    {label:'Books',color:'var(--novel)',count:books,goal:g.Books},
+    {label:'Poems',color:'var(--poem)',count:poems,goal:g.Poem},
+    {label:'Short stories',color:'var(--story)',count:stories,goal:g.Story},
+    {label:'Essays',color:'var(--essay)',count:essays,goal:g.Essay}
+  ];
+  document.getElementById('metricGrid').innerHTML=metrics.map(m=>`<div class="metric"><div class="mlabel"><span class="dot" style="background:${m.color}"></span>${m.label}</div><div class="mval">${m.count}</div><div class="msub">${m.goal>0?'of '+m.goal+' goal':'no goal'}</div></div>`).join('');
+
+  document.getElementById('goalsGrid').innerHTML=metrics.map(m=>{
+    if(m.goal===0) return `<div class="gcard no-goal"><div class="ghead"><span class="gname"><span class="dot" style="background:${m.color}"></span>${m.label}</span><span class="gfrac">${m.count} read</span></div><div class="gno-row"><span class="gsub">no goal set</span><button class="gset-btn" onclick="promptGoal('${m.label}')">+ set goal</button></div></div>`;
+    const pct=Math.min(100,Math.round(m.count/m.goal*100));
+    const exp=Math.round(m.goal*pace); const diff=m.count-exp;
+    const pace_str=diff>=0?(diff===0?'on pace':'+'+diff+' ahead'):Math.abs(diff)+' behind pace';
+    return `<div class="gcard"><div class="ghead"><span class="gname"><span class="dot" style="background:${m.color}"></span>${m.label}</span><span class="gfrac">${m.count} / ${m.goal} <button class="gedit" onclick="inlineEditGoal(this,'${m.label}',${m.goal})" title="Edit goal">&#9998;</button></span></div><div class="gbar-track"><div class="gbar-fill" style="width:${pct}%;background:${m.color}"></div></div><div class="gsub">${pct}% &middot; ${pace_str}</div></div>`;
+  }).join('');
+
+  // Special goals
+  const seriesCount=cy.filter(e=>e.type==='Novel'&&e.seriesName).length;
+  const fantasyCount=cy.filter(e=>e.type==='Novel'&&e.genre==='Fantasy').length;
+  const specials=[{label:'Series novels',icon:'📚',count:seriesCount,goal:g.Series,color:'var(--novel)',sub:'novels in a series'},{label:'Fantasy novels',icon:'✨',count:fantasyCount,goal:g.Fantasy,color:'var(--poem)',sub:'novels tagged Fantasy'}];
+  document.getElementById('specialGrid').innerHTML=specials.filter(s=>s.goal>0).map(s=>{
+    const pct=Math.min(100,Math.round(s.count/s.goal*100));
+    return `<div class="gcard"><div class="ghead"><span class="gname">${s.icon} ${s.label}</span><span class="gfrac">${s.count} / ${s.goal} <button class="gedit" onclick="inlineEditSpecial(this,'${s.label}',${s.goal})">&#9998;</button></span></div><div class="gbar-track"><div class="gbar-fill" style="width:${pct}%;background:${s.color}"></div></div><div class="gsub">${pct}% &middot; ${s.sub}</div></div>`;
+  }).join('');
+
+  // Author goals
+  const ag=state.settings.authorGoals||[];
+  const agCard=document.getElementById('authorGoalsCard');
+  if(!ag.length){agCard.innerHTML='<div class="empty">No author goals set. Add them in Settings.</div>';return;}
+  agCard.innerHTML='<div class="author-list">'+ag.map((a,i)=>{
+    const typeFilter=a.type==='Any type'?null:a.type==='Books'?null:a.type;
+    let count;
+    if(a.type==='Books') count=cy.filter(e=>isBook(e.type)&&e.author.toLowerCase().includes(a.author.toLowerCase())).length;
+    else if(a.type==='Any type') count=cy.filter(e=>e.author.toLowerCase().includes(a.author.toLowerCase())).length;
+    else count=cy.filter(e=>e.type===typeFilter&&e.author.toLowerCase().includes(a.author.toLowerCase())).length;
+    const pct=a.goal>0?Math.min(100,Math.round(count/a.goal*100)):0;
+    const rem=Math.max(0,a.goal-count);
+    return `${i>0?'<div style="height:0.5px;background:var(--bg3)"></div>':''}<div class="arow"><div class="ainfo"><div class="aname">${escHtml(a.author)}</div><div class="ameta">${a.type.toLowerCase()} &middot; goal: ${a.goal}</div></div><div class="abar-wrap"><div class="abar-ahead"><span style="font-size:10px;color:var(--hint)">${count} read</span><span style="font-size:10px;color:var(--hint)">${rem} to go</span></div><div class="abar-track"><div class="abar-fill" style="width:${pct}%"></div></div></div><span style="font-size:11px;color:var(--hint);margin-left:6px">${count}/${a.goal}</span></div>`;
+  }).join('')+'</div>';
+}
+
+function inlineEditGoal(btn, label, current) {
+  event.stopPropagation();
+  const frac=btn.closest('.gfrac');
+  const inp=document.createElement('input');
+  inp.className='ginput'; inp.type='number'; inp.value=current; inp.min=0; inp.style.display='inline-block';
+  inp.onclick=e=>e.stopPropagation();
+  inp.onkeydown=e=>{ if(e.key==='Enter'){saveInlineGoal(label,inp.value);} if(e.key==='Escape'){renderGoals();} };
+  inp.onblur=()=>{ saveInlineGoal(label,inp.value); };
+  frac.innerHTML=''; frac.appendChild(inp); inp.focus(); inp.select();
+}
+function saveInlineGoal(label, val) {
+  const v=parseInt(val)||0;
+  if(label==='Books') state.settings.goals.Books=v;
+  else if(label==='Poems') state.settings.goals.Poem=v;
+  else if(label==='Short stories') state.settings.goals.Story=v;
+  else if(label==='Essays') state.settings.goals.Essay=v;
+  save(); renderGoals();
+}
+function inlineEditSpecial(btn, label, current) {
+  event.stopPropagation();
+  const frac=btn.closest('.gfrac');
+  const inp=document.createElement('input');
+  inp.className='ginput'; inp.type='number'; inp.value=current; inp.min=0; inp.style.display='inline-block';
+  inp.onclick=e=>e.stopPropagation();
+  inp.onkeydown=e=>{ if(e.key==='Enter'){saveInlineSpecial(label,inp.value);} if(e.key==='Escape'){renderGoals();} };
+  inp.onblur=()=>{ saveInlineSpecial(label,inp.value); };
+  frac.innerHTML=''; frac.appendChild(inp); inp.focus(); inp.select();
+}
+function saveInlineSpecial(label, val) {
+  const v=parseInt(val)||0;
+  if(label==='Series novels') state.settings.goals.Series=v;
+  else if(label==='Fantasy novels') state.settings.goals.Fantasy=v;
+  save(); renderGoals();
+}
+function promptGoal(label) {
+  const v=prompt('Set goal for '+label+':'); if(v===null) return;
+  saveInlineGoal(label, v);
+}
+
+// Demographics
+function renderDemo() {
+  const completed=state.entries.filter(e=>e.status==='completed');
+  const langMap={};
+  completed.forEach(e=>{ const l=e.language||'Unknown'; langMap[l]=(langMap[l]||0)+1; });
+  const langs=Object.entries(langMap).sort((a,b)=>b[1]-a[1]);
+  const maxL=langs[0]?.[1]||1;
+  const cols=[TYPE_COLOR['Novel'],TYPE_COLOR['Poem'],TYPE_COLOR['Essay'],TYPE_COLOR['Short Story'],TYPE_COLOR['Poetry Collection'],TYPE_COLOR['Essay Collection']];
+  document.getElementById('langBars').innerHTML=langs.slice(0,6).map(([l,c],i)=>`<div class="lrow"><span class="lname">${l}</span><div class="lbar-track"><div class="lbar-fill" style="width:${Math.round(c/maxL*100)}%;background:${cols[i%cols.length]}"></div></div><span class="lcount">${c}</span></div>`).join('')||'<div style="font-size:11px;color:var(--hint)">No data yet</div>';
+  const novels=completed.filter(e=>e.type==='Novel');
+  const inSeries=novels.filter(e=>e.seriesName).length;
+  document.getElementById('seriesStats').innerHTML=`<div><div class="stat-n">${inSeries}</div><div class="stat-l">in a series</div></div><div><div class="stat-n">${novels.length-inSeries}</div><div class="stat-l">standalone</div></div>`;
+  document.getElementById('seriesBar').style.width=novels.length>0?Math.round(inSeries/novels.length*100)+'%':'0%';
+  const lgbtq=completed.filter(e=>e.lgbtqAuthor||e.lgbtqContent).length;
+  const lgbtqPct=completed.length>0?Math.round(lgbtq/completed.length*100):0;
+  document.getElementById('lgbtqStats').innerHTML=`<div><div class="stat-n" style="color:var(--lgbtq)">${lgbtq}</div><div class="stat-l">tagged works</div></div><div><div class="stat-n" style="color:var(--lgbtq)">${lgbtqPct}%</div><div class="stat-l">of completed</div></div>`;
+}
+
+// Log & TBR
+function toggleLogRow(id) {
+  if(!state.expandedRows) state.expandedRows=new Set();
+  if(state.expandedRows.has(id)) state.expandedRows.delete(id);
+  else state.expandedRows.add(id);
+  applyFilters();
+}
+
+function applyFilters() {
+  const fYear=document.getElementById('fYear').value;
+  const fMonth=document.getElementById('fMonth').value;
+  const fLang=document.getElementById('fLang').value;
+  const fSeries=document.getElementById('fSeries').value;
+  const fLGBTQ=document.getElementById('fLGBTQ').value;
+  let entries=state.entries.filter(e=>e.status==='completed');
+  if(state.activeType!=='all') entries=entries.filter(e=>e.type===state.activeType);
+  if(fYear==='nodate') entries=entries.filter(e=>!e.dateFinished);
+  else if(fYear) entries=entries.filter(e=>e.dateFinished&&new Date(e.dateFinished).getFullYear()===parseInt(fYear));
+  if(fYear!=='nodate'&&fMonth) entries=entries.filter(e=>e.dateFinished&&(new Date(e.dateFinished).getMonth()+1)===parseInt(fMonth));
+  if(fLang) entries=entries.filter(e=>e.language===fLang);
+  if(fSeries==='series') entries=entries.filter(e=>e.seriesName);
+  if(fSeries==='standalone') entries=entries.filter(e=>!e.seriesName);
+  if(fLGBTQ==='author') entries=entries.filter(e=>e.lgbtqAuthor);
+  else if(fLGBTQ==='content') entries=entries.filter(e=>e.lgbtqContent);
+  else if(fLGBTQ==='both') entries=entries.filter(e=>e.lgbtqAuthor&&e.lgbtqContent);
+  const fFormat=document.getElementById('fFormat').value;
+  if(fFormat) entries=entries.filter(e=>(e.format||'Text')===fFormat);
+  const fReread=document.getElementById('fReread').value;
+  if(fReread==='reread') entries=entries.filter(e=>e.isReread);
+  if(fReread==='wantreread') entries=entries.filter(e=>e.wantReread&&!e.isReread);
+  if(fReread==='first') entries=entries.filter(e=>!e.isReread);
+  if(state.authorFilter) entries=entries.filter(e=>e.author===state.authorFilter);
+  if(state.collectionFilter) entries=entries.filter(e=>e.notes===state.collectionFilter||e.title===state.collectionFilter);
+  const fYearVal=document.getElementById('fYear').value;
+  if(fYearVal==='nodate') {
+    entries.sort((a,b)=>a.title.localeCompare(b.title));
+  } else {
+    entries.sort((a,b)=>{
+      if(!a.dateFinished&&!b.dateFinished) return a.title.localeCompare(b.title);
+      if(!a.dateFinished) return 1;
+      if(!b.dateFinished) return -1;
+      return (b.dateFinished||'')>(a.dateFinished||'')?1:-1;
+    });
+  }
+  const tbody=document.getElementById('logBody');
+  if(!entries.length){tbody.innerHTML='<tr><td colspan="10" class="empty">No entries match your filters.</td></tr>';return;}
+  tbody.innerHTML=entries.map(e=>{
+    const series=e.seriesName?(e.seriesName+(e.seriesNum?' #'+e.seriesNum:'')):'';
+    const notes=[e.notes,series].filter(Boolean).join(' · ');
+    const readTag=e.isReread?'<span class="tag-reread">Re-read</span>':e.wantReread?'<span class="tag-wantreread">&#9733; Reread</span>':'<span style="color:var(--hint);font-size:10px">1st</span>';
+    return `<tr><td class="td-m">${fmtDateShort(e.dateFinished)}</td><td>${badgeHtml(e.type)}</td><td style="font-style:italic" title="${escHtml(e.title)}">${escHtml(e.title)}</td><td title="${escHtml(e.author)}">${escHtml(e.author)}</td><td class="td-m">${escHtml(e.translator)||'—'}</td><td><span class="tag">${e.language||'?'}</span></td><td>${starsHistoryHtml(e)}</td><td>${lgbtqHtml(e)}</td><td>${e.format==='Audio'?'<span class="tag">Audio</span>':'<span style="color:var(--hint);font-size:10px">Text</span>'}</td><td class="td-m" style="font-size:10px" title="${escHtml(notes)}">${escHtml(notes)||'—'}</td><td><div class="row-actions"><button class="btn-icon" onclick="openEdit('${e.id}')" title="Edit">&#9998;</button><button class="btn-icon" onclick="initiateReread('${e.id}')" title="Re-read" style="color:var(--poem)">&#8635;</button><button class="btn-icon" onclick="deleteEntry('${e.id}')" title="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td></tr>`;
+  }).join('');
+  // Update filter highlights
+  ['fYear','fMonth','fLang','fSeries','fLGBTQ','fFormat','fReread'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.classList.toggle('filtered',!!el.value);
+  });
+}
+
+function renderTBR() {
+  let entries=state.entries.filter(e=>e.status==='tbr');
+  if(state.activeType!=='all') entries=entries.filter(e=>e.type===state.activeType);
+  const tbody=document.getElementById('tbrBody');
+  if(!entries.length){tbody.innerHTML='<tr><td colspan="8" class="empty">Your TBR list is empty.</td></tr>';return;}
+  tbody.innerHTML=entries.map(e=>{
+    const series=e.seriesName?(e.seriesName+(e.seriesNum?' #'+e.seriesNum:'')):'—';
+    return `<tr><td style="font-style:italic" title="${escHtml(e.title)}">${escHtml(e.title)}</td><td>${escHtml(e.author)}${e.translator?'<br><span style="font-size:10px;color:var(--hint)">tr. '+escHtml(e.translator)+'</span>':''}</td><td>${badgeHtml(e.type)}</td><td><span class="tag">${e.language||'?'}</span></td><td class="td-m">${series}</td><td class="td-m">${e.genre||'—'}</td><td>${lgbtqHtml(e)}</td><td>${e.format==='Audio'?'<span class="tag">Audio</span>':'<span style="color:var(--hint);font-size:10px">Text</span>'}</td><td><div class="row-actions" style="opacity:1"><button class="btn-icon" onclick="openEdit('${e.id}')" title="Edit">&#9998;</button><button class="btn-icon" onclick="startReading('${e.id}')" style="color:var(--accent)" title="Start reading">&#9654;</button><button class="btn-icon" onclick="deleteEntry('${e.id}')" title="Remove"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td></tr>`;
+  }).join('');
+}
+
+function updateFilterOptions() {
+  const completed=state.entries.filter(e=>e.status==='completed');
+  const years=[...new Set(completed.map(e=>e.dateFinished?new Date(e.dateFinished).getFullYear():null).filter(Boolean))].sort((a,b)=>b-a);
+  const undated=completed.filter(e=>!e.dateFinished).length;
+  const ys=document.getElementById('fYear'); const cy=ys.value;
+  ys.innerHTML='<option value="">All years</option>'
+    +(undated>0?`<option value="nodate"${cy==='nodate'?' selected':''}>No date (${undated})</option>`:'')
+    +years.map(y=>`<option value="${y}" ${y==cy?'selected':''}>${y}</option>`).join('');
+  const langs=[...new Set(completed.map(e=>e.language).filter(Boolean))].sort();
+  const ls=document.getElementById('fLang'); const cl=ls.value;
+  ls.innerHTML='<option value="">All languages</option>'+langs.map(l=>`<option value="${l}" ${l===cl?'selected':''}>${l}</option>`).join('');
+}
+
+function startReading(id) {
+  const e=state.entries.find(x=>x.id===id); if(!e) return;
+  e.status='currentlyReading'; e.startedDate=todayISO(); e.progress=0;
+  save(); renderAll();
+}
+// Short-form types that skip Currently Reading on re-read
+const SHORT_FORM_TYPES = ['Poem','Essay','Short Story'];
+const LONG_FORM_REREAD_TYPES = ['Novel','Poetry Collection','Short Story Collection','Essay Collection','Drama'];
+
+let _rereadSourceId = null;
+let _quickRereadId = null;
+let _quickRereadRating = 0;
+
+function initiateReread(id) {
+  const e = state.entries.find(x=>x.id===id); if(!e) return;
+  if(SHORT_FORM_TYPES.includes(e.type)) {
+    // Quick log modal
+    _quickRereadId = id;
+    _quickRereadRating = 0;
+    document.getElementById('quickRereadTitle').textContent = e.title;
+    document.getElementById('quickRereadDate').value = todayISO();
+    document.getElementById('quickRereadNotes').value = '';
+    document.querySelectorAll('#quickRereadStars .star-btn').forEach(s=>s.classList.remove('lit'));
+    document.getElementById('quickRereadOverlay').classList.add('show');
+  } else {
+    // Move to currently reading
+    _rereadSourceId = id;
+    document.getElementById('rereadBookTitle').textContent = e.title;
+    document.getElementById('rereadStartDate').value = todayISO();
+    document.getElementById('rereadOverlay').classList.add('show');
+  }
+}
+
+function confirmReread() {
+  const src = state.entries.find(x=>x.id===_rereadSourceId); if(!src) return;
+  // Create new currently-reading entry linked to original
+  const newEntry = {
+    id: genId(),
+    status: 'currentlyReading',
+    type: src.type,
+    title: src.title,
+    author: src.author,
+    translator: src.translator||'',
+    language: src.language||'English',
+    era: src.era||'Contemporary',
+    genre: src.genre||'',
+    lgbtqAuthor: src.lgbtqAuthor||false,
+    lgbtqContent: src.lgbtqContent||false,
+    seriesName: src.seriesName||'',
+    seriesNum: src.seriesNum||'',
+    format: src.format||'Text',
+    startedDate: document.getElementById('rereadStartDate').value,
+    progress: 0,
+    journal: [],
+    isReread: true,
+    rereadSourceId: _rereadSourceId,
+    rating: 0,
+    ratingHistory: src.ratingHistory||[src.rating||0]
+  };
+  state.entries.push(newEntry);
+  save(); renderAll(); closeModal('rereadOverlay');
+  _rereadSourceId = null;
+}
+
+function confirmQuickReread() {
+  const src = state.entries.find(x=>x.id===_quickRereadId); if(!src) return;
+  const notes = document.getElementById('quickRereadNotes').value.trim();
+  const qrSel = document.getElementById('quickRereadRatingSelect');
+  const rating = qrSel ? parseFloat(qrSel.value)||0 : 0;
+  const newEntry = {
+    id: genId(),
+    status: 'completed',
+    type: src.type,
+    title: src.title,
+    author: src.author,
+    translator: src.translator||'',
+    language: src.language||'English',
+    genre: src.genre||'',
+    lgbtqAuthor: src.lgbtqAuthor||false,
+    lgbtqContent: src.lgbtqContent||false,
+    seriesName: src.seriesName||'',
+    seriesNum: src.seriesNum||'',
+    format: src.format||'Text',
+    dateFinished: document.getElementById('quickRereadDate').value,
+    rating: rating,
+    ratingHistory: [...(src.ratingHistory||[src.rating||0]), rating],
+    notes: notes,
+    journal: [],
+    isReread: true,
+    rereadSourceId: _quickRereadId,
+    progress: 0,
+    wantReread: false
+  };
+  if(!src.ratingHistory) src.ratingHistory = [src.rating||0];
+  if(rating) {
+    src.ratingHistory.push(rating);
+    src.rating = rating;
+  }
+  state.entries.push(newEntry);
+  save(); renderAll(); closeModal('quickRereadOverlay');
+  _quickRereadId = null;
+}
+
+// quick reread rating now uses dropdown select
+
+function deleteEntry(id) {
+  if(!confirm('Remove this entry?')) return;
+  state.entries=state.entries.filter(e=>e.id!==id);
+  save(); renderAll();
+}
+
+// Type pills
+document.getElementById('typePills').addEventListener('click',ev=>{
+  const pill=ev.target.closest('.pill'); if(!pill) return;
+  const type=pill.dataset.type;
+  document.querySelectorAll('#typePills .pill').forEach(p=>p.classList.remove('active'));
+  pill.classList.add('active');
+  state.activeType=type;
+  applyFilters(); renderTBR();
+});
+
+document.getElementById('historyPill').addEventListener('click',()=>{
+  const isActive = document.getElementById('historyPill').classList.contains('active');
+  if(isActive) {
+    showMain();
+    document.querySelectorAll('#typePills .pill').forEach(p=>p.classList.toggle('active',p.dataset.type==='all'));
+    state.activeType='all';
+    applyFilters(); renderTBR();
+  } else {
+    document.getElementById('historyPill').classList.add('active');
+    showHistory();
+  }
+});
+
+function showHistory() {
+  document.querySelectorAll('#typePills .pill').forEach(p=>p.classList.remove('active'));
+  document.getElementById('historyPill').classList.add('active');
+  document.getElementById('mainView').classList.add('hidden');
+  document.getElementById('historyView').classList.add('show');
+  renderHistory();
+}
+function showMain() {
+  document.getElementById('mainView').classList.remove('hidden');
+  document.getElementById('historyView').classList.remove('show');
+  document.getElementById('historyPill').classList.remove('active');
+}
+
+// History
+function renderHistory() {
+  const el=document.getElementById('historyContent');
+  if(!state.archivedYears.length){el.innerHTML='<div class="empty">No archived years yet. Use "Close out '+getYear()+'" to archive the current year at the end of the year.</div>';return;}
+  el.innerHTML=state.archivedYears.slice().sort((a,b)=>b.year-a.year).map(arc=>{
+    const total=Object.values(arc.counts).reduce((s,v)=>s+(v||0),0);
+    const goalsSet=Object.entries(arc.goals).filter(([k,v])=>v>0);
+    const goalsHit=goalsSet.filter(([k,v])=>(arc.counts[k]||0)>=v).length;
+    const langs=arc.langs||[];
+    return `<div class="year-block">
+      <div class="year-head">${arc.year} <span class="year-sub">Closed ${fmtDateFull(arc.closedDate)}</span></div>
+      <div class="hist-stat-grid">
+        <div class="hist-stat"><div class="hist-stat-val">${total}</div><div class="hist-stat-label">Total works read</div></div>
+        <div class="hist-stat"><div class="hist-stat-val" style="color:${goalsHit===goalsSet.length&&goalsSet.length>0?'#1D9E75':'var(--accent)'}">${goalsHit} / ${goalsSet.length}</div><div class="hist-stat-label">Goals hit</div></div>
+        <div class="hist-stat"><div class="hist-stat-val">${langs.length}</div><div class="hist-stat-label">Languages read</div></div>
+      </div>
+      <div class="table-card">
+        <table><thead><tr><th>Type</th><th>Goal</th><th>Result</th></tr></thead><tbody>
+        ${[
+          {label:'Books',key:'Books'},
+          {label:'Poems',key:'Poem'},
+          {label:'Short stories',key:'Story'},
+          {label:'Essays',key:'Essay'}
+        ].map(({label,key})=>{
+          const goal=arc.goals[key]||0; const count=arc.counts[key]||0;
+          const diff=count-goal;
+          const result=goal===0?'<span class="no-goal-cell">no goal</span>':diff>=0?`<span class="hit">+${diff===0?'✓':diff+' ✓'}</span>`:`<span class="miss">${diff}</span>`;
+          return `<tr><td>${label}</td><td style="color:var(--hint)">${goal||'—'}</td><td>${count}</td><td>${result}</td></tr>`;
+        }).join('')}
+        </tbody></table>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// Close out year
+function openCloseout() {
+  const y=getYear();
+  document.getElementById('closeoutTitle').textContent='Close out '+y;
+  const cy=completedThisYear();
+  const books=cy.filter(e=>isBook(e.type)).length;
+  const poems=cy.filter(e=>e.type==='Poem').length;
+  const stories=cy.filter(e=>e.type==='Short Story').length;
+  const essays=cy.filter(e=>e.type==='Essay').length;
+  const langs=[...new Set(cy.map(e=>e.language).filter(Boolean))];
+  document.getElementById('closeoutContent').innerHTML=`
+    <p class="closeout-year">This will archive <strong>${y}</strong>'s reading data. You can still view it in History afterwards. Make sure you've logged everything for the year before closing out.</p>
+    <table class="closeout-table"><thead><tr><th>Type</th><th>Goal</th></tr></thead><tbody>
+      <tr><td>Books</td><td>${state.settings.goals.Books||'—'}</td><td>${books}</td></tr>
+      <tr><td>Poems</td><td>${state.settings.goals.Poem||'—'}</td><td>${poems}</td></tr>
+      <tr><td>Short stories</td><td>${state.settings.goals.Story||'—'}</td><td>${stories}</td></tr>
+      <tr><td>Essays</td><td>${state.settings.goals.Essay||'—'}</td><td>${essays}</td></tr>
+    </tbody></table>`;
+  document.getElementById('closeoutOverlay').classList.add('show');
+}
+function confirmCloseout() {
+  const y=getYear();
+  const cy=completedThisYear();
+  const arc={
+    year:y, closedDate:todayISO(),
+    goals:{...state.settings.goals},
+    counts:{
+      Books:cy.filter(e=>isBook(e.type)).length,
+      Poem:cy.filter(e=>e.type==='Poem').length,
+      Story:cy.filter(e=>e.type==='Short Story').length,
+      Essay:cy.filter(e=>e.type==='Essay').length
+    },
+    langs:[...new Set(cy.map(e=>e.language).filter(Boolean))]
+  };
+  state.archivedYears=state.archivedYears.filter(a=>a.year!==y);
+  state.archivedYears.push(arc);
+  state.settings.trackingYear=y+1;
+  save(); closeModal('closeoutOverlay'); renderAll();
+}
+
+// Search
+const TYPE_PRIORITY = {'Novel':1,'Memoir':1,'Non-fiction':1,'Drama':2,'Short Story Collection':3,'Poetry Collection':3,'Essay Collection':3,'Short Story':4,'Poem':4,'Essay':4};
+const COLLECTION_MAP = {'Essay Collection':'Essay','Poetry Collection':'Poem','Short Story Collection':'Short Story'};
+const COLLECTION_TYPES = Object.keys(COLLECTION_MAP);
+
+function isCollectionType(type) { return COLLECTION_TYPES.includes(type); }
+
+function getChildEntries(collEntry) {
+  const childType = COLLECTION_MAP[collEntry.type];
+  if(!childType) return [];
+  return state.entries.filter(e =>
+    e.author === collEntry.author &&
+    e.type === childType &&
+    (e.notes||'').trim() === collEntry.title.trim()
+  );
+}
+
+function entryBelongsToCollection(entry) {
+  if(isCollectionType(entry.type)) return false;
+  if(!(entry.notes||'').trim()) return false;
+  return state.entries.some(c =>
+    isCollectionType(c.type) &&
+    c.author === entry.author &&
+    c.title.trim() === (entry.notes||'').trim()
+  );
+}
+function entryIsSameNameAsCollection(entry) {
+  if(isCollectionType(entry.type)) return null;
+  if(!(entry.notes||'').trim()) return null;
+  return state.entries.find(c =>
+    isCollectionType(c.type) &&
+    c.author === entry.author &&
+    c.title.trim() === (entry.notes||'').trim() &&
+    c.title.trim() === entry.title.trim()
+  ) || null;
+}
+
+function entryIsSameNameAsCollection(entry) {
+  // Returns the collection if this entry shares its title with its parent collection
+  if(isCollectionType(entry.type)) return null;
+  if(!(entry.notes||'').trim()) return null;
+  return state.entries.find(c =>
+    isCollectionType(c.type) &&
+    c.author === entry.author &&
+    c.title.trim() === (entry.notes||'').trim() &&
+    c.title.trim() === entry.title.trim()
+  ) || null;
+}
+
+function handleSearch() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const res = document.getElementById('searchResults');
+  if(!q || q.length < 2) {
+    res.classList.remove('show');
+    state.authorFilter = null;
+    state.collectionFilter = null;
+    applyFilters();
+    return;
+  }
+
+  const matches = state.entries.filter(e =>
+    !e.isReread && (
+      (e.title||'').toLowerCase().includes(q) ||
+      (e.author||'').toLowerCase().includes(q) ||
+      (e.translator||'').toLowerCase().includes(q)
+    )
+  );
+  if(!matches.length) { res.classList.remove('show'); return; }
+
+  const byAuthor = {};
+  matches.forEach(e => {
+    const a = e.author || 'Unknown';
+    if(!byAuthor[a]) byAuthor[a] = [];
+    byAuthor[a].push(e);
+  });
+
+  const statusOrder = {currentlyReading:0, completed:1, tbr:2};
+  const statusLabel = {currentlyReading:'Currently reading', completed:'Completed', tbr:'To be read'};
+  let html = '';
+
+  Object.entries(byAuthor).forEach(([author, works]) => {
+    const collections = works.filter(e => isCollectionType(e.type));
+    const standalone = works.filter(e =>
+      !isCollectionType(e.type) && (
+        !entryBelongsToCollection(e) ||
+        entryIsSameNameAsCollection(e) !== null
+      )
+    );
+    const displayItems = [...collections, ...standalone].sort((a,b) => {
+      const sd = (statusOrder[a.status]??1) - (statusOrder[b.status]??1);
+      if(sd !== 0) return sd;
+      return (TYPE_PRIORITY[a.type]||5) - (TYPE_PRIORITY[b.type]||5);
+    });
+    if(!displayItems.length) return;
+
+    const totalWorks = displayItems.length;
+    const authorId = 'ag-' + Math.random().toString(36).slice(2,10);
+
+    html += `<div class="search-author-group">
+      <div class="search-author-header" onclick="toggleAuthorGroup('${authorId}')">
+        <span class="search-author-name">${escHtml(author)}</span>
+        <span class="search-author-count">${totalWorks} work${totalWorks===1?'':'s'} ›</span>
+      </div>
+      <div class="search-author-works" id="${authorId}">`;
+
+    let lastStatus = '';
+    displayItems.forEach(e => {
+      if(e.status !== lastStatus) {
+        html += `<div class="search-section-label">${statusLabel[e.status]||e.status}</div>`;
+        lastStatus = e.status;
+      }
+      const isCollection = isCollectionType(e.type);
+      const children = isCollection ? getChildEntries(e) : [];
+      const countTag = isCollection && children.length > 0 ?
+        `<span style="font-size:10px;padding:2px 7px;border-radius:999px;background:var(--bg3);color:var(--muted);white-space:nowrap">${children.length} ${COLLECTION_MAP[e.type].toLowerCase()}s</span>` : '';
+      const readingDot = e.status==='currentlyReading' ? '<span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;flex-shrink:0"></span>' : '';
+      const statusTag = e.status==='currentlyReading' ?
+        `<span style="color:var(--accent);font-size:11px;font-weight:500;display:flex;align-items:center;gap:4px;white-space:nowrap">${readingDot} Reading</span>` :
+        e.status==='tbr' ? '<span style="color:var(--hint);font-size:11px;white-space:nowrap">TBR</span>' :
+        '<span style="color:var(--hint);font-size:11px;white-space:nowrap">Completed</span>';
+      const clickFn = isCollection ? `openCollectionPanel('${e.id}',true)` : `openEdit('${e.id}',null,true)`;
+      html += `<div class="search-result-item" onclick="${clickFn}">
+        ${badgeHtml(e.type)}
+        <span style="flex:1;font-style:italic">${escHtml(e.title)}</span>
+        ${countTag}${statusTag}
+      </div>`;
+    });
+    html += '</div></div>';
+  });
+
+  res.innerHTML = html;
+  res.classList.add('show');
+  // Auto-expand all author groups
+  res.querySelectorAll('.search-author-works').forEach(el => el.classList.add('show'));
+}
+
+function toggleAuthorGroup(id) {
+  const el = document.getElementById(id); if(!el) return;
+  el.classList.toggle('show');
+}
+
+function filterLogByAuthor(author) {
+  document.getElementById('searchInput').value = author;
+  document.getElementById('searchResults').classList.remove('show');
+  state.authorFilter = author;
+  state.collectionFilter = null;
+  applyFilters();
+}
+
+function filterLogByCollection(author, collection) {
+  state.authorFilter = author;
+  state.collectionFilter = collection;
+  applyFilters();
+  document.getElementById('searchResults').classList.remove('show');
+}
+
+function openCollectionPanel(entryId, fromSearch) {
+  const e = state.entries.find(x => x.id === entryId);
+  if(!e) return;
+  document.getElementById('searchResults').classList.remove('show');
+  const backBtn = document.getElementById('cpBackToSearch');
+  if(backBtn) backBtn.style.display = fromSearch ? '' : 'none';
+  const children = getChildEntries(e);
+  const completed = children.filter(c => c.status === 'completed').length;
+  document.getElementById('cpTitle').textContent = e.title;
+  document.getElementById('cpAuthor').textContent = e.author + (e.translator ? ' · tr. ' + e.translator : '');
+  const metaParts = [badgeHtml(e.type)];
+  if(e.language) metaParts.push('<span class="tag">' + e.language + '</span>');
+  if(e.genre) metaParts.push('<span class="tag">' + e.genre + '</span>');
+  const statusStr = e.status==='completed'?'Completed':e.status==='currentlyReading'?'Reading':'TBR';
+  metaParts.push('<span class="tag">' + statusStr + '</span>');
+  document.getElementById('cpMeta').innerHTML = metaParts.join(' ');
+  const childTypeName = COLLECTION_MAP[e.type] || 'work';
+  const childWord = children.length === 1 ? childTypeName : childTypeName + 's';
+  document.getElementById('cpStats').innerHTML = `
+    <div class="cp-stat"><span class="cp-stat-val">${children.length}</span><span class="cp-stat-label">${childWord} inside</span></div>
+    <div class="cp-stat"><span class="cp-stat-val">${completed}</span><span class="cp-stat-label">Completed</span></div>
+    ${e.rating ? `<div class="cp-stat"><span class="cp-stat-val" style="color:#EF9F27">${e.rating} ★</span><span class="cp-stat-label">Rating</span></div>` : ''}`;
+  const childWordLabel = children.length === 1 ? childTypeName : childTypeName + 's';
+  document.getElementById('cpChildLabel').textContent = children.length + ' ' + childWordLabel + ' in this collection';
+  document.getElementById('cpChildList').innerHTML = children.length > 0 ?
+    children.map(c => `<div class="cp-child-row" onclick="closeModal('collectionOverlay');openEdit('${c.id}','${e.id}')">
+      ${badgeHtml(c.type)}
+      <span class="cp-child-title" style="flex:1;font-size:13px;font-style:italic;color:var(--text)">${escHtml(c.title)}</span>
+      <span style="font-size:11px;color:var(--hint)">${c.status==='completed'?'Completed':c.status==='currentlyReading'?'Reading':'TBR'}</span>
+    </div>`).join('') :
+    '<div class="empty">No individual works logged yet.</div>';
+  document.getElementById('cpActions').innerHTML = `
+    <button class="btn btn-primary" style="font-size:13px;padding:10px 20px" onclick="closeModal('collectionOverlay');openEdit('${e.id}','${e.id}')">&#9998; Edit collection</button>
+    ${e.status==='completed' ? `<button class="btn" style="font-size:13px;padding:10px 20px;color:var(--poem)" onclick="closeModal('collectionOverlay');initiateReread('${e.id}')">&#8635; Re-read</button>` : ''}`;
+  document.getElementById('collectionOverlay').classList.add('show');
+}
+
+document.addEventListener('click', e => {
+  if(!e.target.closest('.search-wrap'))
+    document.getElementById('searchResults').classList.remove('show');
+});
+
+// Add entry
+let _addStatus='completed', _addType='Novel', _addRating=0, _addFormat='Text', _addWantReread=false;
+function openAdd(defaultStatus) {
+  _editId=null;
+  document.getElementById('addModalTitle').textContent='Add entry';
+  _addStatus=defaultStatus||'completed'; _addType='Novel'; _addRating=0; _addFormat='Text'; _addWantReread=false;
+  document.getElementById('fTitle').value=''; document.getElementById('fAuthor').value='';
+  document.getElementById('fTranslator').value=''; document.getElementById('fNotes').value='';
+  document.getElementById('fSeriesName').value=''; document.getElementById('fSeriesNum').value='';
+  document.getElementById('fProgress').value='0'; document.getElementById('fDateFinished').value='';
+  document.getElementById('fDateStarted').value=''; document.getElementById('fGenre').value='';
+  document.getElementById('lgbtqAuthor').checked=false; document.getElementById('lgbtqContent').checked=false;
+  const rsel=document.getElementById('ratingSelect'); if(rsel) rsel.value='0';
+  document.querySelectorAll('#statusPills .form-pill').forEach(p=>p.classList.toggle('active',p.dataset.val===_addStatus));
+  document.querySelectorAll('#typePillsForm .form-pill').forEach(p=>p.classList.toggle('active',p.dataset.val==='Novel'));
+  document.querySelectorAll('#formatPills .toggle-pill').forEach(p=>p.classList.toggle('active',p.dataset.val==='Text'));
+  document.querySelectorAll('#wantRereadPills .toggle-pill').forEach(p=>p.classList.toggle('active',p.dataset.val==='no'));
+  document.getElementById('ratingHistoryDisplay').style.display='none';
+  document.getElementById('wantRereadRow').style.display='none';
+  updateAddForm();
+  document.getElementById('addOverlay').classList.add('show');
+  document.getElementById('fTitle').focus();
+}
+function updateAddForm() {
+  const isTBR=_addStatus==='tbr'; const isCR=_addStatus==='currentlyReading'; const isCompleted=_addStatus==='completed';
+  const isNovel=_addType==='Novel';
+  const hasGenre=BOOK_TYPES.includes(_addType);
+  document.getElementById('seriesFields').style.display=isNovel?'':'none';
+  document.getElementById('genreField').style.display=hasGenre?'':'none';
+  document.getElementById('ratingSection').style.display=isTBR?'none':'';
+  document.getElementById('notesField').style.display=isTBR?'none':'';
+  document.getElementById('progressField').style.display=isCR?'':'none';
+  document.getElementById('dateFinishedField').style.display=isCompleted?'':'none';
+  document.getElementById('dateStartedField').style.display=isCR?'':'none';
+  document.getElementById('wantRereadRow').style.display=isCompleted?'':'none';
+}
+document.getElementById('statusPills').addEventListener('click',ev=>{
+  const p=ev.target.closest('.form-pill'); if(!p) return;
+  document.querySelectorAll('#statusPills .form-pill').forEach(x=>x.classList.remove('active'));
+  p.classList.add('active'); _addStatus=p.dataset.val; updateAddForm();
+});
+document.getElementById('typePillsForm').addEventListener('click',ev=>{
+  const p=ev.target.closest('.form-pill'); if(!p) return;
+  document.querySelectorAll('#typePillsForm .form-pill').forEach(x=>x.classList.remove('active'));
+  p.classList.add('active'); _addType=p.dataset.val; updateAddForm();
+});
+document.getElementById('wantRereadPills').addEventListener('click',ev=>{
+  const p=ev.target.closest('.toggle-pill'); if(!p) return;
+  document.querySelectorAll('#wantRereadPills .toggle-pill').forEach(x=>x.classList.remove('active'));
+  p.classList.add('active'); _addWantReread=(p.dataset.val==='yes');
+});
+document.getElementById('formatPills').addEventListener('click',ev=>{
+  const p=ev.target.closest('.toggle-pill'); if(!p) return;
+  document.querySelectorAll('#formatPills .toggle-pill').forEach(x=>x.classList.remove('active'));
+  p.classList.add('active'); _addFormat=p.dataset.val;
+});
+// rating handled by dropdown
+let _editId=null;
+let _editFromCollection=null;
+let _editFromSearch=false;
+
+function openEdit(id, fromCollection, fromSearch) {
+  const e=state.entries.find(x=>x.id===id); if(!e) return;
+  _editId=id;
+  _editFromCollection=fromCollection||null;
+  _editFromSearch=fromSearch||false;
+  _addStatus=e.status; _addType=e.type; _addRating=e.rating||0; _addFormat=e.format||'Text'; _addWantReread=e.wantReread||false;
+  document.getElementById('addModalTitle').textContent='Edit entry';
+  // Back button
+  const backBtn=document.getElementById('backToCollectionBtn');
+  if(backBtn) {
+    if(fromCollection) {
+      backBtn.style.display='';
+      backBtn.innerHTML='&#8592; Back to collection';
+      backBtn.onclick=function(){ closeModal('addOverlay'); openCollectionPanel(fromCollection); };
+    } else if(fromSearch) {
+      backBtn.style.display='';
+      backBtn.innerHTML='&#8592; Back to search';
+      backBtn.onclick=function(){ closeModal('addOverlay'); setTimeout(()=>document.getElementById('searchInput').focus(),50); };
+    } else {
+      backBtn.style.display='none';
+    }
+  }
+  // Re-read button
+  const rrBtnEdit=document.getElementById('rereadFromEditBtn');
+  if(rrBtnEdit) rrBtnEdit.style.display=(e.status==='completed'?'':'none');
+  document.getElementById('fTitle').value=e.title||'';
+  document.getElementById('fAuthor').value=e.author||'';
+  document.getElementById('fTranslator').value=e.translator||'';
+  document.getElementById('fNotes').value=e.notes||'';
+  document.getElementById('fReview').value=e.review||'';
+  document.getElementById('fSeriesName').value=e.seriesName||'';
+  document.getElementById('fSeriesNum').value=e.seriesNum||'';
+  document.getElementById('fProgress').value=e.progress||0;
+  document.getElementById('fDateFinished').value=e.dateFinished||'';
+  document.getElementById('fDateStarted').value=e.startedDate||'';
+  document.getElementById('fGenre').value=e.genre||'';
+  document.getElementById('lgbtqAuthor').checked=!!e.lgbtqAuthor;
+  document.getElementById('lgbtqContent').checked=!!e.lgbtqContent;
+  document.getElementById('fLangInput').value=e.language||'English';
+  const rselEdit=document.getElementById('ratingSelect'); if(rselEdit) rselEdit.value=String(e.rating||0);
+  document.querySelectorAll('#statusPills .form-pill').forEach(p=>p.classList.toggle('active',p.dataset.val===_addStatus));
+  document.querySelectorAll('#typePillsForm .form-pill').forEach(p=>p.classList.toggle('active',p.dataset.val===_addType));
+  document.querySelectorAll('#formatPills .toggle-pill').forEach(p=>p.classList.toggle('active',p.dataset.val===_addFormat));
+  document.querySelectorAll('#wantRereadPills .toggle-pill').forEach(p=>p.classList.toggle('active',p.dataset.val===(_addWantReread?'yes':'no')));
+  // Show want-to-reread only for completed entries
+  document.getElementById('wantRereadRow').style.display=e.status==='completed'?'':'none';
+  // Show rating history if it exists
+  const rh=e.ratingHistory||[];
+  const rhEl=document.getElementById('ratingHistoryDisplay');
+  if(rh.length>1) { rhEl.style.display='block'; rhEl.textContent='History: '+rh.map((r,i)=>'Read '+(i+1)+': '+(r?'★'.repeat(r):'—')).join(' → '); }
+  else { rhEl.style.display='none'; }
+  updateAddForm();
+  document.getElementById('addOverlay').classList.add('show');
+  document.getElementById('fTitle').focus();
+}
+
+function saveEntry() {
+  const title=document.getElementById('fTitle').value.trim();
+  const author=document.getElementById('fAuthor').value.trim();
+  if(!title||!author){alert('Please enter a title and author.');return;}
+  const fields={
+    status:_addStatus,type:_addType,title,author,
+    translator:document.getElementById('fTranslator').value.trim(),
+    language:document.getElementById('fLangInput').value,format:_addFormat,
+    genre:document.getElementById('fGenre').value,
+    lgbtqAuthor:document.getElementById('lgbtqAuthor').checked,
+    lgbtqContent:document.getElementById('lgbtqContent').checked,
+    seriesName:document.getElementById('fSeriesName').value.trim(),
+    seriesNum:document.getElementById('fSeriesNum').value,
+    dateFinished:document.getElementById('fDateFinished').value,
+    startedDate:document.getElementById('fDateStarted').value,
+    rating:parseFloat(document.getElementById('ratingSelect').value)||0,notes:document.getElementById('fNotes').value.trim(),
+    progress:parseInt(document.getElementById('fProgress').value)||0,
+    wantReread:_addWantReread,
+    review:document.getElementById('fReview').value.trim()
+  };
+  if(_editId) {
+    const idx=state.entries.findIndex(e=>e.id===_editId);
+    if(idx>-1) { state.entries[idx]={...state.entries[idx],...fields}; }
+    _editId=null;
+  } else {
+    state.entries.push({id:genId(),journal:[],...fields});
+  }
+  document.getElementById('addModalTitle').textContent='Add entry';
+  save(); renderAll(); closeModal('addOverlay');
+}
+
+// Settings
+function openSettings() {
+  document.getElementById('apiKeyInput').value=state.settings.apiKey||'';
+  document.getElementById('trackingYear').value=state.settings.trackingYear||new Date().getFullYear();
+  document.getElementById('goalBooks').value=state.settings.goals.Books||0;
+  document.getElementById('goalPoem').value=state.settings.goals.Poem||0;
+  document.getElementById('goalStory').value=state.settings.goals.Story||0;
+  document.getElementById('goalEssay').value=state.settings.goals.Essay||0;
+  document.getElementById('goalSeries').value=state.settings.goals.Series||0;
+  document.getElementById('goalFantasy').value=state.settings.goals.Fantasy||0;
+  document.getElementById('goalsSettingsHead').textContent=(state.settings.trackingYear||new Date().getFullYear())+' Annual goals';
+  renderAuthorGoalRows();
+  document.getElementById('settingsOverlay').classList.add('show');
+}
+function renderAuthorGoalRows() {
+  const ag=state.settings.authorGoals||[];
+  document.getElementById('authorGoalRows').innerHTML=ag.map((a,i)=>`<div class="author-row"><input type="text" value="${escHtml(a.author)}" placeholder="Author name" oninput="updateAuthorGoal(${i},'author',this.value)" /><select onchange="updateAuthorGoal(${i},'type',this.value)">${['Novels','Books','Short stories','Short story collections','Poems','Essays','Any type'].map(t=>`<option value="${t}" ${a.type===t?'selected':''}>${t}</option>`).join('')}</select><input type="number" value="${a.goal}" min="1" oninput="updateAuthorGoal(${i},'goal',this.value)" /><button class="del-btn" onclick="removeAuthorGoal(${i})">&times;</button></div>`).join('');
+}
+function updateAuthorGoal(i,key,val) { if(state.settings.authorGoals[i]) state.settings.authorGoals[i][key]=key==='goal'?parseInt(val)||1:val; }
+function removeAuthorGoal(i) { state.settings.authorGoals.splice(i,1); renderAuthorGoalRows(); }
+function addAuthorGoalRow() { if(!state.settings.authorGoals) state.settings.authorGoals=[]; state.settings.authorGoals.push({author:'',type:'Novels',goal:1}); renderAuthorGoalRows(); }
+function clearAllData() {
+  const confirmed = confirm('Are you sure you want to clear all data?\n\nThis will permanently delete:\n• All reading entries\n• All journal notes\n• All goals and settings\n• All archived years\n\nThis cannot be undone. Export a backup first if you want to keep your data.');
+  if(!confirmed) return;
+  const doubleConfirm = confirm('Last chance — are you absolutely sure? All your data will be gone.');
+  if(!doubleConfirm) return;
+  state.entries = [];
+  state.archivedYears = [];
+  state.settings = {
+    apiKey:'', classicCutoff:1970, trackingYear: new Date().getFullYear(),
+    goals: { Books:30, Poem:200, Story:100, Essay:0, Series:10, Fantasy:5 },
+    authorGoals: []
+  };
+  save(); renderAll(); closeModal('settingsOverlay');
+  alert('All data cleared. The dashboard has been reset.');
+}
+
+function saveSettings() {
+  state.settings.apiKey=document.getElementById('apiKeyInput').value.trim();
+  state.settings.trackingYear=parseInt(document.getElementById('trackingYear').value)||new Date().getFullYear();
+  state.settings.goals={
+    Books:parseInt(document.getElementById('goalBooks').value)||0,
+    Poem:parseInt(document.getElementById('goalPoem').value)||0,
+    Story:parseInt(document.getElementById('goalStory').value)||0,
+    Essay:parseInt(document.getElementById('goalEssay').value)||0,
+    Series:parseInt(document.getElementById('goalSeries').value)||0,
+    Fantasy:parseInt(document.getElementById('goalFantasy').value)||0
+  };
+  save(); renderAll(); closeModal('settingsOverlay');
+}
+function toggleApiKey() {
+  const inp=document.getElementById('apiKeyInput');
+  const btn=inp.nextElementSibling;
+  inp.type=inp.type==='password'?'text':'password';
+  btn.textContent=inp.type==='password'?'show':'hide';
+}
+
+// AI
+async function refreshAI() {
+  const key=state.settings.apiKey;
+  if(!key){openSettings();return;}
+  const tbr=state.entries.filter(e=>e.status==='tbr');
+  if(!tbr.length){document.getElementById('aiContent').innerHTML='<p class="ai-msg">Add some books to your TBR list first.</p>';return;}
+  const recent=state.entries.filter(e=>e.status==='completed').sort((a,b)=>(b.dateFinished||'')>(a.dateFinished||'')?1:-1).slice(0,10);
+  document.getElementById('aiContent').innerHTML='<p class="ai-msg" style="font-style:italic">Finding the best pick for you...</p>';
+  const prompt=`You are a thoughtful literary advisor. Based on the reader's recently completed works and TBR list, suggest ONE book from their TBR.\n\nRecently completed:\n${recent.map(e=>`- "${e.title}" by ${e.author} (${e.type}, ${e.era}, ${e.language}${e.genre?', '+e.genre:''})`).join('\n')||'None yet'}\n\nTBR list:\n${tbr.map(e=>`- "${e.title}" by ${e.author} (${e.type}${e.genre?', '+e.genre:''}${e.seriesName?', '+e.seriesName+(e.seriesNum?' #'+e.seriesNum:''):''})`).join('\n')}\n\nRespond ONLY with valid JSON: {"title":"...","author":"...","reason":"One or two sentences explaining why this book fits well right now."}`;
+  try {
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:300,messages:[{role:'user',content:prompt}]})});
+    const data=await res.json();
+    if(data.error) throw new Error(data.error.message);
+    const rec=JSON.parse(data.content[0].text.replace(/```json|```/g,'').trim());
+    const match=tbr.find(e=>e.title.toLowerCase()===rec.title.toLowerCase())||tbr[0];
+    const meta=[match.type,match.genre,match.language,match.seriesName?(match.seriesName+(match.seriesNum?' #'+match.seriesNum:'')):null].filter(Boolean).join(' · ');
+    document.getElementById('aiContent').innerHTML=`<div class="ai-title">${escHtml(rec.title)}</div><div class="ai-author">${escHtml(rec.author)} &middot; ${meta}</div><div class="ai-reason">${escHtml(rec.reason)}</div>`;
+  } catch(err) {
+    document.getElementById('aiContent').innerHTML=`<p class="ai-msg">Something went wrong: ${escHtml(err.message)}. Check your API key in <a href="#" onclick="openSettings();return false;">Settings</a>.</p>`;
+  }
+}
+
+// Import
+var _pendingImport=[];
+var _pendingClean=[];
+var _pendingDups=[];
+var _pendingInvalid=0;
+
+function openImport(mode) {
+  state.importMode=mode;
+  document.getElementById('importFeedback').textContent='';
+  document.getElementById('csvFileInput').value='';
+  document.getElementById('duplicateReview').style.display='none';
+  document.getElementById('dropZone').style.display='block';
+  if(mode==='backup') {
+    document.getElementById('importTitle').textContent='Restore from backup';
+    document.getElementById('importInstructions').innerHTML='Select a <strong>.json</strong> backup file previously exported from this dashboard. <span style="color:var(--accent)">This will restore all your entries, settings, and goals.</span> Your current data will be replaced.';
+    document.getElementById('dropZoneLabel').textContent='Click to choose a .json backup file';
+    document.getElementById('csvFileInput').accept='.json';
+  } else if(mode==='storygraph') {
+    document.getElementById('importTitle').textContent='Import StoryGraph CSV';
+    document.getElementById('importInstructions').innerHTML='Export from StoryGraph: <strong>Profile → Export your library</strong>. Columns are mapped automatically. Duplicates (same title + author) will be flagged for review.';
+    document.getElementById('dropZoneLabel').textContent='Click to choose a CSV file, or drag and drop';
+    document.getElementById('csvFileInput').accept='.csv';
+  } else {
+    document.getElementById('importTitle').textContent='Import CSV';
+    document.getElementById('importInstructions').innerHTML='Your CSV should have columns (any order): <strong>Title, Author, Type, Status, Date Finished, Rating, Language, Notes, Translator, Series Name, Series Number, Category, LGBTQ Author, LGBTQ Content, Started Date, Progress</strong>. Duplicates (same title + author) will be flagged for review.';
+    document.getElementById('dropZoneLabel').textContent='Click to choose a CSV file, or drag and drop';
+    document.getElementById('csvFileInput').accept='.csv';
+  }
+  document.getElementById('importOverlay').classList.add('show');
+}
+
+function isDuplicate(entry) {
+  return state.entries.some(e=>
+    e.title.trim().toLowerCase()===entry.title.trim().toLowerCase() &&
+    e.author.trim().toLowerCase()===entry.author.trim().toLowerCase()
+  );
+}
+
+function handleFileImport(ev) {
+  const file=ev.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try {
+      if(state.importMode==='backup') {
+        restoreFromBackup(e.target.result);
+      } else {
+        const rows=parseCSV(e.target.result); if(!rows.length) throw new Error('No data found');
+        const mapped=[]; let invalid=0;
+        rows.forEach(row=>{
+          const entry=state.importMode==='storygraph'?mapStoryGraph(row):mapCustomCSV(row);
+          if(!entry) return; // skip null (e.g. did-not-finish)
+          if(entry&&entry.title&&entry.author){entry.id=genId();entry.journal=[];mapped.push(entry);}
+          else invalid++;
+        });
+        const newEntries=mapped.filter(e=>!isDuplicate(e));
+        const dupEntries=mapped.filter(e=>isDuplicate(e));
+        _pendingClean=newEntries; _pendingDups=dupEntries; _pendingInvalid=invalid;
+        showImportConfirmation(newEntries.length, dupEntries.length, invalid);
+      }
+    } catch(err) {
+      document.getElementById('importFeedback').style.color='var(--accent)';
+      document.getElementById('importFeedback').textContent='Error: '+err.message;
+    }
+  };
+  reader.readAsText(file);
+}
+
+function showImportConfirmation(newCount, dupCount, invalidCount) {
+  document.getElementById('dropZone').style.display='none';
+  document.getElementById('importFeedback').style.color='var(--text)';
+  document.getElementById('importFeedback').innerHTML=`
+    <div style="background:var(--bg3);border-radius:var(--r);padding:14px;margin-bottom:12px">
+      <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:8px">Ready to import</div>
+      <div style="font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:4px">
+        <span style="color:var(--essay)">&#10003; ${newCount} new entries to add</span>
+        ${dupCount>0?`<span style="color:var(--accent)">&#9888; ${dupCount} duplicate${dupCount===1?'':'s'} to review</span>`:''}
+        ${invalidCount>0?`<span style="color:var(--hint)">&#10005; ${invalidCount} row${invalidCount===1?'':'s'} skipped (missing title or author)</span>`:''}
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn btn-sm" onclick="cancelImport()">Cancel</button>
+      <button class="btn btn-sm btn-primary" onclick="confirmImport()">Confirm import</button>
+    </div>`;
+}
+
+function cancelImport() {
+  _pendingClean=[]; _pendingDups=[]; _pendingInvalid=0;
+  document.getElementById('dropZone').style.display='block';
+  document.getElementById('importFeedback').textContent='';
+}
+
+function confirmImport() {
+  _pendingClean.forEach(e=>state.entries.push(e));
+  save(); renderAll();
+  document.getElementById('importFeedback').style.color='var(--essay)';
+  const msg=`Imported ${_pendingClean.length} entries.${_pendingInvalid?' '+_pendingInvalid+' skipped.':''}`;
+  if(_pendingDups.length>0) {
+    document.getElementById('importFeedback').innerHTML=`<span style="color:var(--essay)">${msg}</span>`;
+    showDuplicateReview(_pendingDups);
+  } else {
+    document.getElementById('importFeedback').textContent=msg;
+    document.getElementById('dropZone').style.display='block';
+  }
+  _pendingClean=[];
+}
+
+function showDuplicateReview(dups) {
+  _pendingImport=dups.map(e=>({...e,_include:false}));
+  document.getElementById('dupTitle').textContent=dups.length+' potential duplicate'+(dups.length===1?'':'s')+' found';
+  document.getElementById('dupSubtitle').textContent='These entries already exist (same title + author). Tick any you want to add anyway — for example, if you read the same book twice.';
+  document.getElementById('dupList').innerHTML=_pendingImport.map((e,i)=>`
+    <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-bottom:0.5px solid var(--bg3);">
+      <input type="checkbox" id="dup-${i}" style="margin-top:2px;accent-color:var(--accent);cursor:pointer" onchange="_pendingImport[${i}]._include=this.checked" />
+      <label for="dup-${i}" style="cursor:pointer;flex:1">
+        <div style="font-size:12px;font-style:italic;color:var(--text)">${escHtml(e.title)}</div>
+        <div style="font-size:11px;color:var(--muted)">${escHtml(e.author)} &middot; ${e.type}</div>
+      </label>
+      <span style="font-size:10px;padding:2px 7px;border-radius:999px;background:var(--bg3);color:var(--hint);white-space:nowrap">already logged</span>
+    </div>`).join('');
+  document.getElementById('duplicateReview').style.display='block';
+  document.getElementById('dropZone').style.display='none';
+}
+
+function importSkipAllDups() {
+  document.getElementById('duplicateReview').style.display='none';
+  document.getElementById('dropZone').style.display='block';
+  document.getElementById('importFeedback').textContent+=' All duplicates skipped.';
+  _pendingImport=[];
+}
+
+function importAddSelected() {
+  const toAdd=_pendingImport.filter(e=>e._include);
+  toAdd.forEach(e=>{
+    const {_include,...clean}=e;
+    // Auto-link to parent collection if one exists with matching title+author
+    if(!clean.notes && ['Essay','Poem','Short Story'].includes(clean.type)) {
+      const parent = state.entries.find(c =>
+        ['Essay Collection','Poetry Collection','Short Story Collection'].includes(c.type) &&
+        c.author.trim().toLowerCase()===clean.author.trim().toLowerCase() &&
+        c.title.trim().toLowerCase()===clean.title.trim().toLowerCase()
+      );
+      if(parent) clean.notes = parent.title;
+    }
+    state.entries.push(clean);
+  });
+  save(); renderAll();
+  document.getElementById('duplicateReview').style.display='none';
+  document.getElementById('dropZone').style.display='block';
+  if(toAdd.length>0) document.getElementById('importFeedback').textContent+=` Added ${toAdd.length} duplicate${toAdd.length===1?'':'s'}.`;
+  else document.getElementById('importFeedback').textContent+=' No duplicates added.';
+  _pendingImport=[];
+}
+
+function restoreFromBackup(text) {
+  const data=JSON.parse(text);
+  if(!data.entries||!Array.isArray(data.entries)) throw new Error('Invalid backup file — no entries found');
+  const entryCount=data.entries.length;
+  if(!confirm(`This will replace all current data with the backup from ${data.exportDate?new Date(data.exportDate).toLocaleDateString():'unknown date'}.\n\n${entryCount} entries will be restored.\n\nAre you sure?`)) return;
+  state.entries=data.entries.map(e=>({...e,journal:e.journal||[]}));
+  if(data.settings) state.settings={...state.settings,...data.settings};
+  if(data.archivedYears) state.archivedYears=data.archivedYears;
+  save(); renderAll();
+  document.getElementById('importFeedback').style.color='var(--essay)';
+  document.getElementById('importFeedback').textContent=`Restored ${entryCount} entries from backup.`;
+}
+function detectDelimiter(line) {
+  const tabs=(line.match(/\t/g)||[]).length;
+  const commas=(line.match(/,/g)||[]).length;
+  return tabs>commas?'\t':',';
+}
+function parseLine(line, delim) {
+  if(delim==='\t') return line.split('\t').map(v=>v.replace(/^"|"$/g,'').trim());
+  const vals=[]; let cur=''; let inQ=false;
+  for(let i=0;i<line.length;i++){if(line[i]==='"'){inQ=!inQ;}else if(line[i]===delim&&!inQ){vals.push(cur.trim());cur='';}else cur+=line[i];}
+  vals.push(cur.trim());
+  return vals.map(v=>v.replace(/^"|"$/g,'').trim());
+}
+function normaliseDate(d) {
+  if(!d) return '';
+  if(/^\d{4}-\d{2}-\d{2}$/.test(d)) return d;
+  if(/^\d{4}\/\d{2}\/\d{2}$/.test(d)) return d.replace(/\//g,'-');
+  const months={january:'01',february:'02',march:'03',april:'04',may:'05',june:'06',july:'07',august:'08',september:'09',october:'10',november:'11',december:'12'};
+  const m=d.match(/^(\w+)\s+(\d+),?\s+(\d{4})$/);
+  if(m){const mo=months[m[1].toLowerCase()];if(mo)return m[3]+'-'+mo+'-'+m[2].padStart(2,'0');}
+  return d;
+}
+function parseCSV(text) {
+  const rawLines=text.trim().split('\n'); if(rawLines.length<2) return [];
+  const delim=detectDelimiter(rawLines[0]);
+  const knownHeaders=['title','author','type','date','notes','rating','status','themes','essay','poem','novel'];
+  let headerIdx=0;
+  for(let i=0;i<Math.min(5,rawLines.length);i++){
+    const cells=parseLine(rawLines[i],delim).map(c=>c.toLowerCase());
+    const matches=cells.filter(c=>knownHeaders.some(k=>c.includes(k))).length;
+    if(matches>=2){headerIdx=i;break;}
+  }
+  const headers=parseLine(rawLines[headerIdx],delim);
+  return rawLines.slice(headerIdx+1).filter(l=>l.trim()&&parseLine(l,delim).some(c=>c.trim())).map(line=>{
+    const vals=parseLine(line,delim);
+    const row={};
+    headers.forEach((h,i)=>{if(h.trim()) row[h.trim()]=vals[i]||'';});
+    return row;
+  });
+}
+function mapCustomCSV(row) {
+  const g=k=>{
+    const keys=Object.keys(row);
+    const exact=keys.find(key=>key===k); if(exact) return row[exact]||'';
+    const lower=keys.find(key=>key.toLowerCase()===k.toLowerCase()); if(lower) return row[lower]||'';
+    return '';
+  };
+  const typeRaw=g('Type');
+  const validTypes=['Novel','Poem','Essay','Short Story','Short Story Collection','Poetry Collection','Essay Collection','Drama','Memoir','Non-fiction'];
+  const type=validTypes.find(t=>t.toLowerCase()===typeRaw.toLowerCase())||(typeRaw?'Novel':'Essay');
+  const sr=(g('Status')||'').toLowerCase();
+  const status=sr?(sr.includes('reading')?'currentlyReading':sr.includes('tbr')||sr.includes('want')?'tbr':'completed'):'completed';
+  const rawDate=g('Date Finished')||g('Date')||'';
+  return {
+    status,type,
+    title:g('Title'),author:g('Author'),translator:g('Translator'),
+    language:g('Language')||'English',
+    genre:g('Genre'),
+    lgbtqAuthor:g('LGBTQ Author')==='true'||g('LGBTQ Author')==='1',
+    lgbtqContent:g('LGBTQ Content')==='true'||g('LGBTQ Content')==='1',
+    seriesName:g('Series Name'),seriesNum:g('Series Number'),
+    dateFinished:normaliseDate(rawDate),
+    startedDate:normaliseDate(g('Started Date')),
+    rating:parseInt(g('Rating'))||0,notes:g('Notes'),
+    progress:parseInt(g('Progress'))||0,format:'Text'
+  };
+}
+function extractTranslator(contributorsStr) {
+  if(!contributorsStr) return '';
+  // Find any person explicitly labelled (Translator)
+  const matches = contributorsStr.match(/([^,]+)\s*\(Translator\)/gi);
+  if(!matches) return '';
+  // Strip the "(Translator)" suffix and trim
+  return matches.map(m => m.replace(/\s*\(Translator\)/i,'').trim()).join(', ');
+}
+
+function mapStoryGraphFormat(formatStr) {
+  if(!formatStr) return 'Text';
+  const f = formatStr.toLowerCase();
+  if(f.includes('audio')) return 'Audio';
+  return 'Text';
+}
+
+function stripHtml(str) {
+  if(!str) return '';
+  return str.replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/&quot;/g,'"').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/\s+/g,' ').trim();
+}
+
+function mapStoryGraph(row) {
+  const g=k=>row[k]||'';
+  const rs=g('Read Status');
+  // Exclude did-not-finish entries
+  if(rs==='did-not-finish') return null;
+  const status=rs==='currently-reading'?'currentlyReading':rs==='to-read'?'tbr':'completed';
+  const genres=g('Genres').toLowerCase();
+  let type='Novel';
+  if(genres.includes('poetry')) type='Poetry Collection';
+  else if(genres.includes('short stor')) type='Short Story Collection';
+  const translator=extractTranslator(g('Contributors'));
+  const format=mapStoryGraphFormat(g('Format'));
+  // Fix date: normalise YYYY/MM/DD to YYYY-MM-DD
+  const rawDate=g('Last Date Read')||g('Dates Read')||g('Date Read')||'';
+  const dateFinished=normaliseDate(rawDate);
+  // Handle rating: preserve .5 values
+  const ratingRaw=g('Star Rating');
+  const rating=ratingRaw?parseFloat(ratingRaw):0;
+  // Store review separately, strip HTML
+  const reviewRaw=g('Review');
+  const review=reviewRaw?stripHtml(reviewRaw):'';
+  return {
+    status, type,
+    title:g('Title'),
+    author:g('Authors'),
+    translator,
+    language:'English',
+    genre:'',
+    lgbtqAuthor:false,
+    lgbtqContent:false,
+    seriesName:'',
+    seriesNum:'',
+    dateFinished,
+    startedDate:'',
+    rating,
+    review,
+    notes:'',
+    progress:0,
+    format
+  };
+}
+
+// Export
+function exportData() {
+  const data=JSON.stringify({entries:state.entries,settings:{...state.settings,apiKey:''},archivedYears:state.archivedYears,exportDate:new Date().toISOString()},null,2);
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
+  a.download='reading-log-'+todayISO()+'.json'; a.click();
+  localStorage.setItem('rl2_last_export', Date.now());
+  localStorage.removeItem('rl2_backup_dismissed');
+  document.getElementById('backupBanner').classList.remove('show');
+}
+
+// Modal helpers
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+['addOverlay','settingsOverlay','importOverlay','closeoutOverlay','finishOverlay','rereadOverlay','quickRereadOverlay','collectionOverlay'].forEach(id=>{
+  document.getElementById(id).addEventListener('click',e=>{if(e.target.id===id) closeModal(id);});
+});
+
+function renderAll() {
+  renderCR(); renderGoals(); renderDemo();
+  updateFilterOptions(); applyFilters(); renderTBR();
+}
+
+// Backup reminder
+const BACKUP_INTERVAL_DAYS = 7;
+
+function checkBackupReminder() {
+  const lastExport = localStorage.getItem('rl2_last_export');
+  const lastDismiss = localStorage.getItem('rl2_backup_dismissed');
+  const now = Date.now();
+  const intervalMs = BACKUP_INTERVAL_DAYS * 24 * 60 * 60 * 1000;
+
+  // If dismissed recently (within same 7-day window), don't show again
+  if(lastDismiss && (now - parseInt(lastDismiss)) < intervalMs) return;
+
+  // If never exported, show after first session (24 hours)
+  if(!lastExport) {
+    const firstOpen = localStorage.getItem('rl2_first_open');
+    if(!firstOpen) { localStorage.setItem('rl2_first_open', now); return; }
+    if((now - parseInt(firstOpen)) < 24 * 60 * 60 * 1000) return;
+    showBackupBanner("You haven't exported a backup yet.");
+    return;
+  }
+
+  const daysSince = Math.floor((now - parseInt(lastExport)) / (24 * 60 * 60 * 1000));
+  if(daysSince >= BACKUP_INTERVAL_DAYS) {
+    showBackupBanner('Last export was ' + daysSince + ' day' + (daysSince===1?'':'s') + ' ago.');
+  }
+}
+
+function showBackupBanner(subtext) {
+  document.getElementById('backupBannerSub').textContent = subtext;
+  document.getElementById('backupBanner').classList.add('show');
+}
+
+function dismissBackupBanner() {
+  localStorage.setItem('rl2_backup_dismissed', Date.now());
+  document.getElementById('backupBanner').classList.remove('show');
+}
+
+function exportDataAndDismiss() {
+  exportData();
+  localStorage.setItem('rl2_last_export', Date.now());
+  localStorage.removeItem('rl2_backup_dismissed');
+  document.getElementById('backupBanner').classList.remove('show');
+}
+
+load(); renderAll(); checkBackupReminder();
+</script>
+
+
+<div style="max-width:960px;margin:0 auto;padding:0 20px 20px">
+  <div style="display:flex;gap:6px;flex-wrap:wrap;padding:16px 0;border-top:0.5px solid var(--border)">
+    <button class="btn btn-ghost btn-sm" onclick="openImport('csv')">&#8593; Import CSV</button>
+    <button class="btn btn-ghost btn-sm" onclick="openImport('storygraph')">&#8593; Import StoryGraph</button>
+    <button class="btn btn-ghost btn-sm" onclick="openImport('backup')">&#8635; Restore from backup</button>
+    <button class="btn btn-ghost btn-sm" onclick="openAdd('tbr')">+ Add to TBR</button>
+    <button class="btn btn-ghost btn-sm" onclick="openAdd('completed')">+ Add entry</button>
+  </div>
+</div>
+</body>
+</html>
