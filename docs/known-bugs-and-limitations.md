@@ -1,4 +1,4 @@
-# Reading Log Dashboard — Known Bugs & Limitations
+# URSULA — Known Bugs & Limitations
 
 *Current version: v22 | Last updated: May 23, 2026*
 
@@ -129,11 +129,13 @@ These are not bugs. They are documented constraints of the current architecture 
 
 **Severity:** High — data loss risk if not understood
 
-**Description:** localStorage data is scoped to the exact file path and browser. Opening `reading-dashboard.html` in Chrome and Firefox gives two completely separate data stores. Moving the file to a different folder, renaming it, or opening it via a web server instead of directly from disk will all result in an apparently empty app (the old data still exists in localStorage, but under a different key the new path won't find).
+**Description:** localStorage data is scoped to the exact file path and browser. Opening `reading-dashboard.html` in Chrome and Firefox gives two completely separate data stores. Moving the file to a different folder, renaming it, or opening it via a web server instead of directly from disk will all result in an apparently empty app (the old data still exists in localStorage under the old path's key, but the new path won't find it).
 
-**Workaround:** Always open the file from the same path in the same browser. Export a JSON backup regularly. The app has a backup reminder system for this purpose.
+**The update workflow (important):** When a new version of the file is saved to the **same folder with the same filename** and opened in the same browser, all existing data carries over automatically. No re-import is needed. This is the intended way to receive updates — same filename, same folder, same browser.
 
-**Resolution:** Platform migration to Node.js + Supabase will store data server-side.
+**Workaround:** Decide on a permanent home and filename for the file before adding real data, and never change either. Always open it from the same browser. Export a JSON backup regularly — the app has a backup reminder system for this purpose.
+
+**Resolution:** Platform migration to Node.js + Supabase will store data server-side, eliminating this constraint entirely.
 
 ---
 

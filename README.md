@@ -1,4 +1,4 @@
-# Reading Log Dashboard
+# URSULA
 
 A self-contained browser-based reading tracker. No server, no installation, no database required — everything runs in a single HTML file using localStorage for persistence.
 
@@ -39,8 +39,11 @@ All data is stored in your browser's localStorage under these keys:
 - Clearing browser data/cache will delete your reading log
 - Data does not sync across devices or browsers
 - Opening the file in a different browser = empty slate (different localStorage)
+- Moving or renaming the file will make previously saved data inaccessible (the data still exists in localStorage under the old path, but the new path won't find it)
 
-**Backing up:** Use the Export function inside the app to download a JSON file. Keep this somewhere safe. You can restore from it using the Import function.
+**Updating the file:** When a new version of the file is saved to the **same folder with the same filename** and opened in the same browser, all existing data carries over automatically. No re-import needed. This is the intended update workflow — keep the filename (`reading-dashboard.html`) and folder consistent across all versions.
+
+**Backing up:** Use the Export function inside the app to download a JSON file. Keep this somewhere safe (an external drive, cloud storage, etc.). You can restore from it using the Import function. Export before every update as a safety net.
 
 ---
 
@@ -48,31 +51,18 @@ All data is stored in your browser's localStorage under these keys:
 
 The entire app — HTML, CSS, and JavaScript — lives in a single file (`reading-dashboard.html`). Open it in any text editor to make changes.
 
-### The Build → Test → Confirm → Commit Cycle
+**Recommended workflow for development:**
 
-From v23 onwards, versions follow a formalised release cycle:
+1. Make a versioned copy before editing (e.g. `reading-dashboard-v23.html`) so you have a rollback point
+2. Edit the copy in your text editor
+3. Open the edited copy in your browser to test
+4. When satisfied, replace your working copy
 
-1. **Build** — a new version is produced (in Claude) as a release candidate
-2. **Test** — the specific features that changed are verified in the browser
-3. **Confirm** — once testing passes, the version is considered stable
-4. **Commit** — the confirmed stable file is committed to GitHub with a descriptive message
+**Do not test with your real data file.** Open a separate copy of the file for development, or use a different browser profile so localStorage data stays separate.
 
-A version is not "shipped" until it has passed testing. This is why v22 has three features listed as pending testing — they were built but not yet confirmed before this cycle was formalised at v23.
+### Build Safety Checks (apply before shipping any version)
 
-**Note:** Pre-v23 builds used a more informal process (build → rename → maybe test later). The changelog reflects this — earlier entries describe what was built; from v23 onwards, entries describe what was confirmed stable.
-
-### Recommended File Setup
-
-Keep two copies open during development:
-
-- `prototype/reading-dashboard.html` — your live, real-data file. Never edit this directly.
-- `prototype/reading-dashboard-dev.html` — your working copy for testing. Use a separate browser profile so localStorage stays isolated from your real data.
-
-When a build is confirmed stable, replace the live file with the dev copy and commit.
-
-### Build Safety Checks (required before any commit)
-
-These checks must pass before finalising a new version:
+From the v23 handoff, these checks must pass before finalising a new version:
 
 1. **ID cross-reference** — every `getElementById('x')` in JavaScript has a matching `id='x'` in HTML
 2. **Listener audit** — after removing any HTML element, confirm no orphaned event listeners remain
@@ -92,23 +82,6 @@ Two import formats are supported, both accessible from the Import button at the 
 
 ---
 
-## Repository Structure
-
-```
-ursula/
-├── README.md
-├── CHANGELOG.md
-├── prototype/
-│   └── reading-dashboard.html
-└── docs/
-    ├── handoff.md
-    ├── data-dictionary.md
-    ├── known-bugs-and-limitations.md
-    └── ROADMAP.md
-```
-
----
-
 ## File Size Reference
 
 As of v22:
@@ -123,14 +96,6 @@ A significant unexplained drop in CSS size is a warning sign of a regression (se
 
 ---
 
-## Version History
-
-Formal versioned releases begin at **v23**. Earlier versions (v1–v22) were built iteratively in a single-file prototype — see `CHANGELOG.md` for the full history.
-
-The project will eventually migrate to a proper stack (Node.js + Supabase + Vercel) under the name **URSULA** (named after Ursula K. Le Guin). See `docs/ROADMAP.md` for migration plans.
-
----
-
 ## Current Version
 
-**v22** — See `CHANGELOG.md` for full version history and `docs/handoff.md` for architecture details and roadmap.
+**v22** — See `reading-dashboard-changelog.docx` for full version history, and `reading-dashboard-handoff.docx` for architecture details, data model, and roadmap.

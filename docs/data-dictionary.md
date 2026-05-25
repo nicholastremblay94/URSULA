@@ -1,4 +1,4 @@
-# Reading Log Dashboard — Data Dictionary
+# URSULA — Data Dictionary
 
 *Current version: v22 | Last updated: May 23, 2026*
 
